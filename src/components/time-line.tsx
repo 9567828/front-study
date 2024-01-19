@@ -28,6 +28,7 @@ export interface ITweet {
   userId: string;
   username: string;
   createdAt: number;
+  editAt: number;
 }
 
 export default function Timeline() {
@@ -54,7 +55,8 @@ export default function Timeline() {
       }); */
       unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
         const tweets = snapshot.docs.map((doc) => {
-          const { tweet, createdAt, userId, username, photo } = doc.data();
+          const { tweet, createdAt, userId, username, photo, editAt } =
+            doc.data();
           return {
             tweet,
             createdAt,
@@ -62,6 +64,7 @@ export default function Timeline() {
             username,
             photo,
             id: doc.id,
+            editAt: editAt || null,
           };
         });
         setTweet(tweets);

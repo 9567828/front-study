@@ -41,6 +41,7 @@ const AttachFileButton = styled.label`
 const AttachFileInput = styled.input`
   display: none;
 `;
+const PreviewImg = styled.img``;
 const SubmitBtn = styled.input`
   padding: 10px 0;
   background-color: #1d9bf0;
@@ -64,15 +65,14 @@ export default function PostTweetForm() {
   };
   const onFilechange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
-    const filesize = (e.target.files as FileList)[0].size;
-    const maxsize = 3 * 1024 * 1024; //1mb = 1024 * 1024
+    const maxsize = 5 * 1024 * 1024; //1mb = 1024 * 1024
 
-    if (filesize > maxsize) {
-      alert("파일의 최대 용량은 3MB입니다.");
-      setFile(null);
-      return;
-    }
     if (files && files.length === 1) {
+      if (files[0].size > maxsize) {
+        alert("파일의 최대 용량은 5MB입니다.");
+        setFile(null);
+        return;
+      }
       // 파일을 1개만 받겠다
       setFile(files[0]); // 파일의 첫 번째 자식을 file의 값으로 저장
     }
@@ -125,6 +125,7 @@ export default function PostTweetForm() {
         type="file"
         accept="image/*"
       />
+      <PreviewImg />
       <SubmitBtn
         type="submit"
         value={isLoading ? "Posting..." : "Post Tweet"}

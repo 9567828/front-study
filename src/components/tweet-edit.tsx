@@ -9,7 +9,7 @@ import {
   uploadBytes,
 } from "firebase/storage";
 
-interface tweetList {
+export interface tweetList {
   id: string;
   photo?: string; // 포토는 requierd가 아니다.
   tweet: string;

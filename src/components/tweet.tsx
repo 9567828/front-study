@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 import { ITweet } from "./time-line";
 import { auth, db, storage } from "../firebase";
-import { deleteDoc, doc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { useState } from "react";
 import TweetEdit from "./tweet-edit";
+import { deleteDoc, doc } from "firebase/firestore";
 
 const Wrapper = styled.div`
   display: grid;

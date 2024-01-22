@@ -26,9 +26,10 @@ export interface ITweet {
   photo?: string; // 포토는 requierd가 아니다.
   tweet: string;
   userId: string;
-  username: string;
+  username: string | null;
   createdAt: number;
   editAt: number;
+  userAvatar?: string;
 }
 
 export default function Timeline() {
@@ -55,8 +56,15 @@ export default function Timeline() {
       }); */
       unsubscribe = await onSnapshot(tweetsQuery, (snapshot) => {
         const tweets = snapshot.docs.map((doc) => {
-          const { tweet, createdAt, userId, username, photo, editAt } =
-            doc.data();
+          const {
+            tweet,
+            createdAt,
+            userId,
+            username,
+            photo,
+            editAt,
+            userAvatar,
+          } = doc.data();
           return {
             tweet,
             createdAt,
@@ -65,6 +73,7 @@ export default function Timeline() {
             photo,
             id: doc.id,
             editAt: editAt || null,
+            userAvatar: userAvatar || null,
           };
         });
         setTweet(tweets);

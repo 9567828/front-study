@@ -27,7 +27,16 @@ const router = createBrowserRouter([
       },
       {
         path: "profile", // 홈에서 profile로 이동하게 되면 profile이 나타난다.
-        element: <Profile />,
+        element: (
+          <Profile
+            id={""}
+            tweet={""}
+            userId={""}
+            username={null}
+            createdAt={0}
+            editAt={0}
+          />
+        ),
       },
     ],
   },

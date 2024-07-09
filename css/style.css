@@ -265,7 +265,7 @@ footer .copyright {
 .bottom-menu-wrap {
   width: 100%;
   position: fixed;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   bottom: 0;
   left: 0;
   background-color: #fff;
@@ -325,5 +325,137 @@ footer .copyright {
   font-size: 1rem;
 }
 
-
 /* bottom menu bar end */
+
+/* side menu bar start */
+.side-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 100;
+}
+
+.side-menu .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.side-menu .menu-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22rem;
+  height: 100%;
+  padding: 2.4rem 1.6rem;
+  background-color: #fff;
+}
+
+.side-menu .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.side-menu .logo-icon {
+  height: 3.2rem;
+}
+
+.side-menu .head a {
+  display: block;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.side-menu .login {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-decoration: underline;
+  padding-bottom: 1rem;
+}
+
+.side-menu .small-text {
+  font-size: 1.2rem;
+  color: #414144;
+  margin-bottom: 0.5rem;
+}
+
+.side-menu .menu-list {
+  padding: 5px 0;
+  border-top: solid 1px #e5e5e5;
+  border-bottom: solid 1px #e5e5e5;
+}
+
+.side-menu .menu-list a {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #cf2321;
+  padding: 5px 0;
+}
+
+.side-menu .menu-list .icon {
+  margin-right: 0.5rem;
+}
+
+.side-menu .side-menu-list > li {
+  position: relative;
+}
+
+.side-menu .side-menu-list > li > p {
+  position: relative;
+  padding: 15px 0;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-bottom: solid 1px #e9e9e9;
+  cursor: pointer;
+}
+
+.side-menu .side-menu-list > li > i {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+}
+
+.side-menu .side-menu-list .sub-list {
+  padding: 15px 10px;
+  background-color: #fafafa;
+  display: none;
+}
+
+.side-menu .fa-caret-down {
+  display: none;
+}
+
+.side-menu .side-menu-list .sub-list li {
+  margin-bottom: 2.3rem;
+  font-size: 1.2rem;
+}
+
+.side-menu .side-menu-list .sub-list a {
+  display: block;
+  color: #777;
+}
+
+.side-menu .close-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: -6.5rem;
+}
+
+.side-menu .close-icon {
+  height: 5.6rem;
+}
+
+/* side menu bar end */

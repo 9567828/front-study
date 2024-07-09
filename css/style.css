@@ -1,3 +1,8 @@
+/* 스크롤 */
+body.scrolling nav {
+  background-color: rgba(255, 255, 255,0.9);
+}
+
 /* header */
 header .head-wrap {
   height: 5.6rem;
@@ -53,6 +58,7 @@ header nav {
   box-shadow: 0 2px 4px 0 rgba(138, 149, 158, 0.15);
   border-top: solid 1px #f3f8f9;
   background-color: #fff;
+  transition: all 0.2s ease-in-out;
 }
 
 nav .gnb-list {
@@ -329,13 +335,20 @@ footer .copyright {
 
 /* side menu bar start */
 .side-menu {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100%;
   z-index: 100;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.3s ease, transfrom 0.3s ease;
+}
+
+.side-menu.open {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .side-menu .bg {
@@ -432,6 +445,10 @@ footer .copyright {
   display: none;
 }
 
+.side-menu .side-menu-list .sub-list.open {
+  display: block;
+}
+
 .side-menu .fa-caret-down {
   display: none;
 }
@@ -452,6 +469,7 @@ footer .copyright {
   position: absolute;
   top: 0;
   left: -6.5rem;
+  cursor: pointer;
 }
 
 .side-menu .close-icon {

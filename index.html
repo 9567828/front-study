@@ -6,10 +6,10 @@
     <title>파파존스-Better Ingredients.Better Pizza.</title>
 
     <!-- css 연결 -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <!-- css 초기화 -->
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/font.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/font.css" />
 
     <!-- 파비콘 -->
     <link
@@ -17,6 +17,9 @@
       href="./imgs/20220228_newFavicon.ico"
       type="image/x-icon"
     />
+
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
 
@@ -26,28 +29,201 @@
       <header>
         <div class="head-wrap">
           <div class="logo">
-            <img src="./imgs/220301_icon_logo.png" alt="logo" />
+            <a href="/">
+              <img src="./imgs/220301_icon_logo.png" alt="logo" class="icon-logo" />
+            </a>
           </div>
           <div class="location">
-            <img src="./imgs/icon_marker.png" alt="location_spot" />
-            <p>기본 주소를 등록해 주세요</p>
+            <img src="./imgs/icon_marker.png" alt="location_spot" class="spot" />
+            <p class="location-text">기본 주소를 등록해 주세요</p>
           </div>
           <div class="menu-bar">
-            <img src="./imgs/icon_lnb_menu.png" alt="menu_icon" />
+            <button class="lnb-btn">
+              <img src="./imgs/icon_lnb_menu.png" alt="menu_icon" class="menu_icon"/>
+            </button>
           </div>
         </div>
         <nav>
-          <ul>
-            <li>메뉴</li>
-            <li>이벤트/할인</li>
-            <li>E-쿠폰주문</li>
+          <ul class="gnb-list">
+          <li><a href="" class="list-link">메뉴</a></li>
+          <li><a href="" class="list-link">이벤트/할인</a></li>
+          <li><a href="" class="list-link">E-쿠폰주문</a></li>
           </ul>
         </nav>
       </header>
 
+      <div class="content-box">
+        <!-- event section -->
+        <section id="event-wrap">
+          <div class="swiper eventSlide">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="" class="event-link">
+                  <img src="/imgs/event/240308_main_donate.jpg" alt="main" class="event-img">
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="event-link">
+                  <img src="/imgs/event/240624_main_newPizza.jpg" alt="main" class="event-img">
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="event-link">
+                  <img src="/imgs/event/240701_main_PizzaClassroom.jpg" alt="main" class="event-img">
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="event-link">
+                  <img src="/imgs/event/240703_09_main_promotion.jpg" alt="main" class="event-img">
+                </a>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </section>
 
-      
+        <!-- delivery & take away -->
+        <section id="order">
+          <div class="inner">
+            <button class="info-wrap red">
+              <img src="/imgs/icon_delivery.png" alt="delivery-img" class="order-icon">
+              <p class="large-text">
+                배달 주문
+              </p>
+              <img src="/imgs/icon_right_circle.png" alt="right-arrow" class="right-arrow">
+            </button>
+            <button class="info-wrap red">
+              <img src="/imgs/icon_wrapping.png" alt="wrapping-img" class="order-icon">
+              <p class="large-text">
+                포장 주문
+              </p>
+              <img src="/imgs/icon_right_circle.png" alt="right-arrow" class="right-arrow">
+            </button>
+            <button class="info-wrap white">
+              <img src="/imgs/icon_link3.png" alt="event-icon" class="info-icon">
+              <p class="samll-text">이벤트</p>
+            </button>
+            <button class="info-wrap white">
+              <img src="/imgs/icon_link2.png" alt="event-icon" class="info-icon">
+              <p class="samll-text">제휴할인</p>
+            </button>
+            <button class="info-wrap white">
+              <img src="/imgs/icon_link5.png" alt="event-icon" class="info-icon">
+              <p class="samll-text">E-쿠폰주문</p>
+            </button>
+            <button class="info-wrap white">
+              <img src="/imgs/icon_link4.png" alt="event-icon" class="info-icon">
+              <p class="samll-text">매장찾기</p>
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- footer -->
+      <footer>
+        <div class="service-wrap">
+          <div class="terms">
+            <ul class="terms-list">
+              <li><a href="">고객센터</a></li>
+              <li><a href="">개인정보처리방침</a></li>
+              <li><a href="">위치기반서비스</a></li>
+            </ul>
+          </div>
+          <div class="inquiry">
+            <div class="service call">
+              <p class="text">콜센터주문</p>
+              <p class="text">1577-8080</p>
+            </div>
+            <div class="service online">
+              <p class="text">온라인이용문의</p>
+              <p class="text">1566-0889</p>
+            </div>
+            <div class="service center">
+              <p class="text">고객센터</p>
+              <p class="text">1577-8142</p>
+            </div>
+          </div>
+          <div class="social">
+            <ul>
+              <li>
+                <a href="">
+                  <img src="/imgs/sns/icon_facebook_color.png" alt="fb" class="sns-icon">
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src="/imgs/sns/icon_blog_color.png" alt="blog" class="sns-icon">
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src="imgs/sns/icon_instagram_color.png" alt="insta" class="sns-icon">
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <img src="imgs/sns/icon_ch_color.png" alt="ch" class="sns-icon">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="company-info">
+          <span class="company-name">한국파파존스(주)</span>
+          <ul class="info-list">
+            <li>서울시 강남구 압구정로 210 4층 우)06022</li>
+            <li>Tel: 1577-8080&nbsp;&nbsp;Fax: 515-8448</li>
+            <li>대표이사: 서창우&nbsp;&nbsp;개인정보관리 책임자: 전용관</li>
+            <li>통신판매신고: 강남11495호&nbsp;&nbsp;사업자등록번호: 211-87-25621</li>
+          </ul>
+        </div>
+        <div class="copyright">
+          <span>COPYRIGHT © 2020 PAPAJOHNS.ALL RIGHTS RESERVED</span>
+        </div>
+      </footer>
+
+      <!-- bottom menu bar -->
+      <div class="bottom-menu-wrap">
+        <ul class="menu-list">
+          <li>
+            <a href="">
+              <img src="/imgs/icon_quick_2_off.png" alt="membership" class="bottom-icon">
+              <p class="text">멤버쉽</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="/imgs/icon_quick_5_off.png" alt="coupon" class="bottom-icon">
+              <p class="text">쿠폰함</p>
+            </a>
+          </li>
+          <li class="pizza-order">
+            <a href="">
+              <img src="/imgs/pizza-slice-solid.svg" alt="pizza" class="bottom-icon pizza">
+              <p class="text">피자주문</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="/imgs/icon_quick_4_off.png" alt="order-list" class="bottom-icon order">
+              <p class="text">주문내역</p>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img src="/imgs/icon_cart.png" alt="cart" class="bottom-icon cart">
+              <p class="text">장바구니</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
 
     </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/slide.js"></script>
+
   </body>
 </html>

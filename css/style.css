@@ -370,7 +370,7 @@ footer .copyright {
   right: -100%;
   width: 22rem;
   height: 100%;
-  padding: 2.4rem 1.6rem;
+  padding: 1.6rem 1.6rem;
   background-color: #fff;
 }
 
@@ -396,13 +396,13 @@ footer .copyright {
   font-size: 1.8rem;
   font-weight: 500;
   text-decoration: underline;
-  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .side-menu .small-text {
   font-size: 1.2rem;
   color: #414144;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .side-menu .menu-list {
@@ -416,7 +416,7 @@ footer .copyright {
   font-size: 1.5rem;
   font-weight: 700;
   color: #cf2321;
-  padding: 5px 0;
+  padding: 8px 0;
 }
 
 .side-menu .menu-list .icon {

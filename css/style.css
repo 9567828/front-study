@@ -342,13 +342,17 @@ footer .copyright {
   height: 100%;
   z-index: 100;
   opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.3s ease, transfrom 0.3s ease;
+  pointer-events: none;
+  transition: all .3s ease-in-out;
 }
 
 .side-menu.open {
   opacity: 1;
-  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.side-menu.open .menu-box {
+  right: 0;
 }
 
 .side-menu .bg {
@@ -363,7 +367,7 @@ footer .copyright {
 .side-menu .menu-box {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -100%;
   width: 22rem;
   height: 100%;
   padding: 2.4rem 1.6rem;
@@ -424,8 +428,8 @@ footer .copyright {
 }
 
 .side-menu .side-menu-list > li > p {
-  position: relative;
   padding: 15px 0;
+  width: 100%;
   margin-bottom: 0;
   font-size: 1.5rem;
   font-weight: 700;
@@ -433,29 +437,37 @@ footer .copyright {
   cursor: pointer;
 }
 
-.side-menu .side-menu-list > li > i {
+.side-menu .fa-caret-right {
   position: absolute;
   top: 15px;
-  right: 5px;
+  right: calc(50% / 25);
+  font-size: 1.2rem;
+  transform: rotate(0);
+  transition: all .3s ease-in-out;
 }
 
 .side-menu .side-menu-list .sub-list {
   padding: 15px 10px;
   background-color: #fafafa;
   display: none;
+  transition: all .3s ease-in-out;
 }
 
 .side-menu .side-menu-list .sub-list.open {
   display: block;
 }
 
-.side-menu .fa-caret-down {
-  display: none;
+.side-menu .side-menu-list .fa-caret-right.active {
+  transform: rotate(90deg);
 }
 
 .side-menu .side-menu-list .sub-list li {
   margin-bottom: 2.3rem;
   font-size: 1.2rem;
+}
+
+.side-menu .side-menu-list .sub-list li:last-child {
+  margin-bottom: 0;
 }
 
 .side-menu .side-menu-list .sub-list a {

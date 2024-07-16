@@ -210,6 +210,6 @@ const doubledFruits = Object.keys(fruits).reduce((obj2, key) => {
   const price = fruits[key];
   obj2[key] = price ? price * 2 : 0;
   return obj2;
-}, {});
+}, {}); // 새로운 오브젝트를 누적 연산의 초기값을 설정
 
 console.log(doubledFruits);

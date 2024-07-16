@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_HTML 요소 선택하기</title>
+</head>
+
+<body>
+
+    <h3># Document Object Model (DOM)</h3>
+
+    <ul>
+        <li>웹 브라우저의 HTML코드를 해석하여 생성해둔 객체</li>
+        <li>DOM을 통해 HTML의 모든 요소에 접근할 수 있다</li>
+    </ul>
+
+    <h3># 원하는 요소를 쉽게 선택하기 위한 document의 메서드들</h3>
+    <ul>
+        <li>document.getElementByID(id) : id로 원하는 요소를 선택한다</li>
+        <li>document.getElementTagName(tagName) : 
+            해당 태그명의 모든 요소를 선택한다</li>
+        <li>document.getElementClassName(className) : 
+            해당 클래스 속성을 지닌 모든 요소를 선택한다</li>
+    </ul>
+
+    <div>
+        <div id="div1" class="box red"></div>
+        <div id="div2" class="box important"></div>
+        <div id="div3" class="box important"></div>
+    </div>
+
+    <script src="js/16_scirpt.js"></script>
+
+</body>
+
+</html>

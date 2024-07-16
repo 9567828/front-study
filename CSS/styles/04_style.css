@@ -6,63 +6,63 @@ div {
 }
 
 div:first-of-type {
-  background-image: url("../img/puppy.jpg");
+  background-image: url("../../img/puppy.jpg");
   background-size: 200px 200px;
   background-repeat: no-repeat;
   background-position: bottom right;
 }
 
 div:nth-of-type(2) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: repeat-x;
   background-position: center;
 }
 
 div:nth-of-type(3) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: repeat-y;
   background-position: center;
 }
 
 div:nth-of-type(4) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: top;
 }
 
 div:nth-of-type(5) {
-  background-image: url("../imgs/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 div:nth-of-type(6) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 div:nth-of-type(7) {
-  background-image: url("/img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: bottom;
 }
 
 div:nth-of-type(8) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 div:nth-of-type(9) {
-  background-image: url("../img/ad-141170_1280.jpg");
+  background-image: url("../../img/ad-141170_1280.jpg");
   background-size: 100px 100px;
   background-repeat: no-repeat;
   background-position: 50px 50px;

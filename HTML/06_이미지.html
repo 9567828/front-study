@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06_이미지.html</title>
+  </head>
+  <body>
+    <h3># 웹페이지에 이미지 넣지</h3>
+    <b><i>&lt;img src="" alt=" width=" height=""&gt;</i></b>
+
+    <p>
+      - src속성: 출력하고자 하는 이미지의 경로<br />
+      - alt속성: 해당 이미지에 대한 설명 <br />
+      - width속성: 이미지 너비<br />
+      - height속성: 이미지 높이<br />
+      - alt속성은 시각 장애인용 화면 읽어주는 프로그램(Screen Reader)에서 그림을
+      읽을 때 사용하는 속성이기 때문에 반드시 채워놓아야 한다<b
+        >(이런 것을 웹표준 이라고 함)</b
+      ><br />
+    </p>
+
+    <!-- width, height를 모두 설정하면 이미지 비율이 깨질 가능성이 높다 -->
+    <img
+      src="https://images.mypetlife.co.kr/content/uploads/2023/04/07111321/AdobeStock_258180661-1024x705.jpeg"
+      alt="뛰는 강아지"
+      width="100px"
+      height="100px"
+    />
+
+    <!-- width 또는 height를 하나만 설정하면 나머지 값은 자동으로 이율을 유지하며 조절 된다 -->
+    <img
+      src="https://images.mypetlife.co.kr/content/uploads/2023/04/07111321/AdobeStock_258180661-1024x705.jpeg"
+      alt="뛰는 강아지"
+      width="100px"
+      height="auto"
+    />
+    <!-- auto는 생략 가능하다 -->
+    <img
+      src="https://images.mypetlife.co.kr/content/uploads/2023/04/07111321/AdobeStock_258180661-1024x705.jpeg"
+      alt="뛰는 강아지"
+      width="auto"
+      height="100px"
+    />
+    <!-- auto는 생략 가능하다 -->
+
+    <!-- h, p, hr태그는 기본적으로 박스 취급을 하는 태그다 (block요소) -->
+    <!-- a, b, mark, sub, sup, img 태그는 기본적으로 글자 취급을 하는 태그다 
+      (글자들 사이에서 문단을 해치지 않음, inline 요소) -->
+    <hr />
+
+    <img src="./imgs/puppy.jpg" alt="강아지사진" />
+    <img src="./imgs/puppy.jpg" alt="" />
+  </body>
+</html>

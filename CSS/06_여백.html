@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06_여백</title>
+    <link rel="stylesheet" href="./style/06_style.css" />
+  </head>
+  <body>
+    <h3># margin</h3>
+
+    <ul>
+      <li>해당 요소와 다른 요소간의 거리를 결정하는 여백</li>
+      <li>border 바깥쪽에 존재하는 여백</li>
+      <li>
+        margin-bottom과 margin-top이 만나는 곳에서는 둘 중 더 높은 값 하나만
+        적용된다
+      </li>
+      <li>margin을 auto로 설정하면 가운데로 정렬해준다</li>
+    </ul>
+
+    <div id="margin-box1" class="test-box">margin test용 박스1</div>
+    <div id="margin-box2" class="test-box">margin test용 박스2</div>
+    <div id="margin-box3" class="test-box">margin test용 박스3</div>
+    <h3># padding</h3>
+
+    <ul>
+      <li>
+        요소 내부의 내용이 차지하는 영역(contect-box)부터 border까지의 거리를
+        의미하는 여백
+      </li>
+      <li>패딩은 요소 전체의 크기에 영향을 미친다</li>
+    </ul>
+
+    <div id="padding-box1" class="test-box">padding 테스트용박스1</div>
+    <div id="padding-box2" class="test-box">padding 테스트용박스2</div>
+    <div id="padding-box3" class="test-box">padding 테스트용박스3</div>
+
+    <hr />
+
+    <h3># HTML Box Model</h3>
+    <ul>
+      <li>HTML은 모든 요소를 박스 형태로 구성한다</li>
+      <li>
+        박스의 제일 바깥쪽 여백을 margin이라고 부르고, border, padding,
+        content-box 순으로 요소를 구성하고 있다
+      </li>
+      <li>
+        요소의 전체 크기는 border의 굵기 + padding + content-box의 크기를 더해야
+        알 수 있다
+      </li>
+    </ul>
+
+    <h3># box-sizing</h3>
+
+    <ul>
+      <li>width와 height값이 어떤 박스의 크기를 의미하는 지 설정하는 속성</li>
+      <li>
+        box-sizing: content-box는 width/height의 값이 content-box의 크기를
+        설정한다(기본설정)
+      </li>
+      <li>
+        box-sizing: border-box는 width/height의 값이 요소의 전체 크기를 설정하게
+        되고 border-width, padding, content-box의 크기는 알아서 조절 된다
+      </li>
+    </ul>
+
+    <div id="content-box-ex">
+      box-sizing: content-box; <br />
+      width/height가 content-box의 크기를 결정한다
+    </div>
+    <div id="border-box-ex">
+      box-sizing: border-box; <br />
+      width/height가 border-box의 크기를 결정한다
+    </div>
+  </body>
+</html>

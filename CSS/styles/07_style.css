@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 25px;
+}
+
+.abs-units {
+  margin: 5px;
+  border: solid 3px salmon;
+}
+
+#div1 {
+  width: 100px;
+}
+#div2 {
+  width: 50mm;
+}
+#div3 {
+  width: 5cm;
+}
+#div4 {
+  width: 5in;
+}
+
+.rel-units {
+  margin: 5px;
+  border: solid 3px turquoise;
+  font-size: 15px;
+}
+
+#size1 {
+  width: 50%;
+}
+
+#size2 {
+  width: 10em;
+}
+
+#size3 {
+  width: 10rem;
+}
+
+#size4 {
+  width: 100vw;
+}
+
+#size5 {
+  height: 100vh;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02_선택자(Selector)</title>
+
+    <style>
+      @font-face {
+        font-family: "EF_jejudoldam";
+        src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
+          format("woff2");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "S-CoreDream-3Light";
+        src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* tagName : 해당 태그 이름을 지닌 모든 요소를 선택 */
+      body {
+        background-color: #eee;
+        font-family: S-CoreDream-3Light;
+      }
+
+      li {
+        list-style: none;
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+
+      /* #(id): 해당 id를 지닌 요소만 선택 
+        ※ 프로그래밍 언어에서 -를 그냥 사용하면 연산자이지만
+           HTML과 CSS에서는 연산자가 아닌 문자로 사용 된다
+
+        ※ id속성은 유일한 하나만 만들 수 있다 (다른 태그에 똑같은 이름 안된다)
+      */
+      #list-item3 {
+        font-family: "EF_jejudoldam";
+        font-size: 30px;
+        color: orange;
+      }
+
+      /* 
+        .className : 클래스 속성값으로 요소들을 선택할 수 있다 
+        ※ class속성은 여러 태그에 같은 명칭을 사용할 수 있다
+      */
+      .drink {
+        text-decoration: underline double 1px lightblue;
+      }
+
+      #list-item1,
+      #list-item6 {
+        color: salmon;
+      }
+
+      div {
+        border: solid 3px #fff;
+        padding: 10px;
+      }
+
+      div > div {
+        border-color: #000;
+      }
+
+      /* #box1내부의 자식 div들을 선택한 것 */
+      #box1 > div {
+        background-color: #fff;
+      }
+
+      #box1 {
+        background-color: #3753f5;
+      }
+
+      /* #box2 내부의 자손을 선택한 것 */
+      #box2 div {
+        font-weight: bold;
+        color: #f1ff55;
+        background-color: #765ed8;
+      }
+
+      .game-link {
+        text-decoration: underline;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h3># CSS 선택자</h3>
+
+    <ul>
+      <li>tagName: 해당 태그 이름의 모든 요소를 선택</li>
+      <li>#id : 해당 id를 지닌 요소 하나만 선택</li>
+      <li>.className: 해당 class값을 지닌 모든 요소 선택</li>
+      <li>* : 모든 요소 선택</li>
+      <li>&gt; : 해당 요소의 자식요소 선택(정확하게 자식 요소만)</li>
+      <li>공백: 해당 요소의 자손 요소 선택(내부에 잇는 모든 요소가 자손)</li>
+      <li>, : 여러개의 선택자를 한 번에 사용할 때 사용</li>
+      <li>
+        <a href="https://flukeout.github.io/" target="_blank" class="game-link"
+          >선택자 연습 게임하러가기!</a
+        >
+      </li>
+    </ul>
+
+    <hr />
+    <ul>
+      <!-- ul>li*5#list-item$.drink -->
+      <li id="list-item1" class="drink">콜라</li>
+      <li id="list-item2" class="drink">사이다</li>
+      <li id="list-item3" class="drink">환타</li>
+      <li id="list-item4" class="drink">홍차</li>
+      <li id="list-item5" class="drink">우롱차</li>
+      <li id="list-item6" class="car">소나타</li>
+    </ul>
+
+    <!-- div: 그냥 블록 요소를 하나 만들고 싶을 때 사용 -->
+    <div id="box1">
+      <div>
+        1
+        <div>1-1</div>
+        <div>1-2</div>
+      </div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+    <div id="box2">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+    </div>
+  </body>
+</html>

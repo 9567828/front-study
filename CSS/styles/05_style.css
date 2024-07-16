@@ -1,0 +1,74 @@
+/* ul의 타입 속성으로 모양을 없앨 수도 있지만
+  CSS의 list-style-type 속성으로 없앨 수도 있다
+*/
+ul {
+  list-style-type: none;
+  padding: 3px;
+}
+
+ul > li {
+  margin-bottom: 10px;
+  padding: 3px;
+  font-size: 18px;
+}
+
+#style-sample-list > li {
+  border: solid 5px #000;
+}
+
+/* 
+    border: 모든 테두리 옵션들을 한 번에 설정하는 단축 property
+*/
+
+#style-sample-list > li:nth-child(2) {
+  /* 하나하나 설정 가능하다 */
+  border-style: dotted;
+  border-color: #4d9d01;
+  border-width: 5px;
+}
+
+#style-sample-list > li:nth-child(3) {
+  border: dashed 5px #00686b;
+}
+
+#style-sample-list > li:nth-child(4) {
+  border: double 8px #39006b;
+}
+
+#style-sample-list > li:nth-child(5) {
+  border: inset 5px #6b0059;
+}
+
+#style-sample-list > li:nth-child(6) {
+  border: outset 5px #6b0059;
+}
+
+#style-sample-list > li:nth-child(7) {
+  border: ridge 5px #590012;
+}
+
+#style-sample-list > li:nth-child(8) {
+  border: groove 5px #15a9ac;
+}
+
+#multi-values > li:first-child {
+  border: solid 3px tomato;
+}
+
+#multi-values > li:nth-child(2) {
+  border-color: blue orange;
+  border-width: 3px 5px;
+  border-style: solid dashed;
+}
+
+#multi-values > li:nth-child(3) {
+  border-color: blue green orange;
+  border-width: 3px 10px 15px;
+  border-style: solid dashed dotted;
+}
+
+#multi-values > li:nth-child(4) {
+  border-color: blue green orange red;
+  border-width: 3px 10px 15px 5px;
+  border-style: solid dashed double dotted;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07_table</title>
+  </head>
+  <body>
+    <h3># 웹페이지에 표 출력하기</h3>
+    <p>
+      &lt;table&gt; : 표의 전체 범위를 지정하는 태그<br />
+      &lt;tr&gt; : table row, 해당 표에 한 줄을 추가하는 태그<br />
+      &lt;th&gt; : table header, 해당 줄에 제목 칸을 추가하는 태그<br />
+      &lt;td&gt; : table data, 해당 줄에 데이터 칸을 추가하는 태그<br />
+    </p>
+
+    <hr />
+
+    <table border="2">
+      <tr style="height: 50px">
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>주소</th>
+      </tr>
+      <tr>
+        <td>빌 게이츠</td>
+        <td>010-1234-1234</td>
+        <td>실리콘밸리</td>
+      </tr>
+      <tr>
+        <td>팀 쿡</td>
+        <td>010-1234-1234</td>
+        <td>실리콘밸리</td>
+      </tr>
+      <tr>
+        <td>테슬라</td>
+        <td>010-1234-1234</td>
+        <td>실리콘밸리</td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <h3>과일 가격표</h3>
+    <table border="1">
+      <tr>
+        <th>이름</th>
+        <th>가격</th>
+        <th>원산지1</th>
+        <th>원산지2</th>
+      </tr>
+      <tr>
+        <td>사과</td>
+        <td rowspan="2">2000</td>
+        <td>충주</td>
+        <td>원주</td>
+      </tr>
+      <tr>
+        <td>배</td>
+        <td>나주</td>
+        <td>창원</td>
+      </tr>
+      <tr>
+        <td>귤</td>
+        <td>2300</td>
+        <td colspan="2" style="text-align: center">제주</td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <!-- 문제풀이 -->
+
+    <table border="2">
+      <tr>
+        <th colspan="7">Time Table</th>
+      </tr>
+
+      <tr>
+        <th rowspan="6">Hours</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+      </tr>
+
+      <tr>
+        <td>Science</td>
+        <td>Maths</td>
+        <td>Science</td>
+        <td>Maths</td>
+        <td>Arts</td>
+      </tr>
+
+      <tr>
+        <td>Social</td>
+        <td>History</td>
+        <td>English</td>
+        <td>Social</td>
+        <td>Sports</td>
+      </tr>
+
+      <tr>
+        <th colspan="6">Lunch</th>
+      </tr>
+
+      <tr>
+        <td>Science</td>
+        <td>Maths</td>
+        <td>Science</td>
+        <td>Maths</td>
+        <td rowspan="2">Project</td>
+      </tr>
+
+      <tr>
+        <td>Social</td>
+        <td>History</td>
+        <td>English</td>
+        <td>Social</td>
+      </tr>
+    </table>
+  </body>
+</html>

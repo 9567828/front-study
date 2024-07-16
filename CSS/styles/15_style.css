@@ -1,0 +1,51 @@
+#block-example, #block-example > * {
+    border: solid 1px #000;
+    padding: 5px;
+}
+
+#block-example > :first-child {
+    width: 30%;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+#block-example > :nth-child(2) {
+    width: 10%;
+    height: 200px;
+    padding: 30px;
+}
+
+.span-test {
+    padding: 20px;
+    margin-right: 10px;
+    border: solid 3px orange;
+    background-color: navy;
+    color: #fff;
+    font-weight: bold;
+}
+
+#nav1 {
+    border: solid 1px #000;
+}
+
+#nav1 > * {
+    display: inline;
+    margin-right: 50px;
+    border: solid 1px #000;
+}
+
+.ib-test {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px;
+    border: solid 3px greenyellow;
+    background-color: orange;
+}
+
+.off {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}

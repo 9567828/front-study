@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_아이콘</title>
+
+    <!-- 구글 아이콘 -->
+    <link rel="stylesheet" href="./styles/11_style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h3># Icon CDN</h3>
+
+    <ul>
+        <li>Google ICON</li>
+        <li>Font-awesome Icon</li>
+        <li>아이콘은 실제로는 글꼴을 활용하는 방식이기 때문에 font-size와 color를 사용해 크기와 색을 변경할 수 있다</li>
+    </ul>
+
+    <h3># Google Icon</h3>
+
+    <ul>
+        <li>link를 통해 CDN을 import한다</li>
+        <li>클래스를 지정하고 원하는 아이콘의 이름을 적으면 적용된다</li>
+        <li>나중에 변수를 변경하여 사용하고 싶을 때는 variable icon font에 있는 링크를 사용하고 고정값으로 사용하고 싶을 때는 static icon font에 있는 링크를 사용하면 된다</li>
+    </ul>
+
+    <h5># outline icons</h5>
+
+    <div class="display-icons">
+        <span class="material-symbols-outlined" style="font-size: 35px; color: red;">
+            close
+        </span>
+        <span class="material-symbols-outlined">
+            home
+        </span>
+        <span class="material-symbols-outlined">
+            menu
+        </span>
+        <span class="material-symbols-outlined">
+            toggle_on
+        </span>
+        <span class="material-symbols-outlined">
+            backspace
+        </span>
+    </div>
+
+    <h5># rounded icons</h5>
+    <div class="display-icons">
+        <span class="material-symbols-rounded">
+            terminal
+        </span>
+    </div>
+
+
+    <h3># Font-awesome Icon</h3>
+    <div class="display-icons">
+        <i class="fa-solid fa-house"></i>
+        <i class="fa-regular fa-image" style="color: #768f56;"></i>
+        <p><i class="fa-solid fa-coffee fa-2xs"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee fa-xs"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee fa-sm"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee fa-lg"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee fa-xl"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <p><i class="fa-solid fa-coffee fa-2xl"></i> When my six o’clock alarm buzzes, I require a pot of good java. </p>
+        <i class="fa-solid fa-camera fa-1x"></i>
+        <i class="fa-solid fa-camera fa-2x"></i>
+        <i class="fa-solid fa-camera fa-3x"></i>
+        <i class="fa-solid fa-camera fa-4x"></i>
+        <i class="fa-solid fa-camera fa-5x"></i>
+        <i class="fa-solid fa-camera fa-6x"></i>
+        <i class="fa-solid fa-camera fa-7x"></i>
+        <i class="fa-solid fa-camera fa-8x"></i>
+        <i class="fa-solid fa-camera fa-9x"></i>
+        <i class="fa-solid fa-camera fa-10x"></i>
+    </div>
+
+    <h5>Styling Basics</h5>
+
+    <span style="font-size: 3em; color: Tomato;">
+    <i class="fa-solid fa-camera"></i>
+    </span>
+
+    <span style="font-size: 48px; color: Dodgerblue;">
+    <i class="fa-solid fa-camera"></i>
+    </span>
+
+    <span style="font-size: 3rem;">
+    <span style="color: Mediumslateblue;">
+        <i class="fa-solid fa-camera"></i>
+    </span>
+    </span>
+
+    <h5>Rotate Icons</h5>
+    <div class="fa-3x">
+        <i class="fa-solid fa-snowboarding"></i>
+        <i class="fa-solid fa-snowboarding fa-rotate-90"></i>
+        <i class="fa-solid fa-snowboarding fa-rotate-180"></i>
+        <i class="fa-solid fa-snowboarding fa-rotate-270"></i>
+        <i class="fa-solid fa-snowboarding fa-flip-horizontal"></i>
+        <i class="fa-solid fa-snowboarding fa-flip-vertical"></i>
+        <i class="fa-solid fa-snowboarding fa-flip-both"></i>
+    </div>
+
+    <h5>Animating Icons</h5>
+    <div class="fa-3x">
+        <i class="fa-solid fa-circle-plus fa-beat"></i>
+        <i class="fa-solid fa-heart fa-beat"></i>
+        <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s;"></i>
+        <i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 2s;"></i>
+        <i class="fa-solid fa-heart fa-beat" style="--fa-beat-scale: 2.0;"></i>
+    </div>
+
+    <div class="fa-3x">
+        <i class="fa-solid fa-triangle-person-digging fa-beat-fade"></i>
+        <i class="fa-solid fa-square-exclamation fa-beat-fade"></i>
+        <i class="fa-solid fa-poo-bolt fa-beat-fade" style="--fa-beat-fade-opacity: 0.1; --fa-beat-fade-scale: 1.25;"></i>
+        <i class="fa-solid fa-circle-info fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;"></i>
+    </div>
+
+
+    <h3># 직접 원하는 옵션을 여러개 적용한 아이콘 5개만 만들어보기</h3>
+    <div class="fa-3x">
+        <i class="fa-solid fa-poo fa-spin" style="color: #4e2222;"></i>
+        <i class="fa-brands fa-twitter fa-shake" style="color: #74C0FC; padding: 10px; --fa-animation-duration: 2s"></i>
+        <i class="fa-brands fa-github fa-spin" style="color: #a92323; padding-right: 10px;"></i>
+        <i class="fa-solid fa-bell fa-shake" style="color: #FFD43B; --fa-animation-duration: 3s"></i>
+        <i class="fa-regular fa-thumbs-down fa-bounce" style="color: #b762df;"></i>
+    </div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    /* padding: 0; */
+    box-sizing: border-box;
+}
+
+[class$="-box"] {
+    width: 100px;
+    height: 100px;
+    border: solid 3px tomato;
+    line-height: 100px;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0.9; /* 불투명도 설정 1이 완전 불투명 0이 투명 */
+}
+
+.absolute-box {
+    position: absolute;
+}
+
+#box1 {
+    top: 10px;
+    left: 100px;
+}
+
+#box2 {
+    top: 100px;
+    right: 30px;
+}
+
+#box3 {
+    right: 50px;
+    bottom: 50px;
+}
+
+.relative-box {
+    position: relative;
+}
+
+#box4 {
+    left: 10px;
+}
+
+#box5 {
+    left: 50px;
+}
+
+#box6 {
+    left: 100px;
+}
+
+#container1 {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    border: solid 3px #000;
+}
+
+#container1 > div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: solid 1px #000;
+}
+
+#container2 {
+    position: absolute;
+    width: 800px;
+    height: 300px;
+    top: 0;
+    right: 0;
+    background-color: slateblue;
+    /* 포지션이 설정 된 요소들끼리의 높이 설정 */
+    /* 포지션이 설정되지 않은 요소의 z-index는 0 */
+    z-index: -1;
+}
+
+#container2 > div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+}
+
+#container2 > div:first-child {
+    top: 100px;
+    left: 100px;
+}
+
+#container2 > div:nth-child(2) {
+    top: 0;
+    left: 200px;
+}
+
+#aside-bar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: antiquewhite;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* opacity: 0.3; */
+    /* z-index: -2; */
+}
+
+#aside-bar > div {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#sticky-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: orange;
+    color: wheat;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.height {
+    height: 1000px;
+}
+
+#sticky-bar2 {
+    position: sticky;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: sandybrown;
+    color: wheat;
+    font-size: 30px;
+    font-weight: 900;
+}

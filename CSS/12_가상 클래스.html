@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_가상클래스</title>
+
+    <!-- css 연결 -->
+    <link rel="stylesheet" href="./styles/12_style.css">
+
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h3># Pseudo Class</h3>
+
+    <ul>
+        <li>선택자에 추가로 사용하여 해당 요소의 특정 상황만을 선택하는 것</li>
+        <li>선택자뒤에 :을 붙여 원하는 특정 상황을 고를 수 있다</li>
+    </ul>
+
+    <h3># 종류</h3>
+
+    <ul>
+        <li>:first-child, :nth-child(n/even/odd), :last-child</li>
+        <li>:first-of-type, :nth-of-type(n/even/odd), :last-of-type</li>
+        <li>:hover, :link, :active, :visited</li>
+        <li>이 외에 더 많은 가상 클래스들은 Pseudo Class로 구글링..</li>
+    </ul>
+
+
+    <h3># 링크에 적용되는 가상 클래스 사용해보기</h3>
+
+    <ul>
+        <li>:link - 방문한 적이 없는 링크</li>
+        <li>:visited - 방문한 적이 있는 링크</li>
+        <li>:active - 링크를 클릭하고 있는 상태</li>
+        <li>:hover - 해당 요소에 마우스가 올라가 있을 때</li>
+    </ul>
+
+    <a id="to_naver" href="https://naver.com" target="_blank">NAVER</a>
+
+    <hr>
+
+    <button onclick="buttonClickHandler()">눌러보세요</button>
+    <div id="out" style="display: grid; grid-template-columns: auto auto auto auto; justify-content: space-evenly;"></div>
+
+
+    <script>
+        // HTML에 있는 요소를 자바 스크립트에서 불러들인다
+        var divElement = document.getElementById("out")
+        var span = document.createElement("span")
+        // 이벤트 핸들러이기 때문에
+        // 이벤트 발생 시 이벤트 정보가 함께 도착한다
+        var i = 0;
+        function buttonClickHandler() {
+            // sysout처럼 웹 브라우저의 콘솔에 원하는 것을 출력
+            // console.log("버튼눌림!", i++);
+            // divElement.append(span);
+            // span.setAttribute("class", "fa-solid fa-frog fa-3x")
+            // span.style.padding = "5px";
+            divElement.innerHTML += "<span class=\"fa-solid fa-frog fa-3x\" style=\"padding: 5px;\"><span>";
+        }
+    </script>
+</body>
+</html>

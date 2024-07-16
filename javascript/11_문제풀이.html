@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_문제풀이</title>
+</head>
+<body>
+
+
+    <h3># 배열다루기 문제 풀이</h3>
+
+    <h3>1) 모든 학생 기본정보 테이블</h3>
+    <div id="all_table"></div>
+
+    <h3>2) 모든 학생들의 평균점수로 이루어진 테이블</h3>
+    <div id="avg_table"></div>
+
+    <h3>3) 수학 보충 수업 받아야 하는 학생들</h3>
+    <div id="math_failed_table"></div>
+
+    <h3>4) 평균 만족도</h3>
+    <div id="star_table"></div>
+
+    <script>
+    /*
+        (1) 학생번호, 이름, 국/영/수 랜덤 점수, 급식 만족도(별 0 ~ 5)를 가진
+            학생 100명의 자바스크립트 오브젝트 배열을 생성
+        (2) 모든 학생들의 평균 점수들로 이루어진 배열을 생성
+        (3) 수학 점수가 60점 이하인 학생들로만 이루어진 배열을 생성
+        (4) 학생들의 급식 만족도의 평균을 구할 것
+
+        (1), (2), (3), (4)을 모두 html에 보기좋게 출력 할 것
+    */
+
+    // 1)
+    const all_students = [];
+
+    const lastNames = ['김', '이', '박', '최'];
+    const firstNames = ['영수', '영호', '영자', '영숙', '영철', '정숙', '순자'];
+
+    const getRandomValue = arr => arr[Math.floor(Math.random() * arr.length)];
+    const getRandomName = () => 
+        getRandomValue(lastNames) + getRandomValue(firstNames);
+
+    const getRandomeScore = () => Math.floor(Math.random() * 101);
+    const getRandomeStar = () => Math.floor(Math.random() * 6)
+
+    const genRandomStudent = () => ({
+        name: getRandomName(),
+        kor: getRandomeScore(),
+        eng: getRandomeScore(),
+        math: getRandomeScore(),
+        star: getRandomeStar(),
+    });
+    for (let i = 0; i < 100; ++i) {
+        all_students.push(genRandomStudent());
+    }
+    console.log(all_students);
+
+    // 2)
+    const getAvg = stu => Math.round((stu.kor + stu.eng + stu.math) / 3 * 100) / 100;
+
+    const all_students_avg = all_students.map(stu => ({
+        ...stu,
+        avg: getAvg(stu),
+    }))
+    console.log(all_students_avg);
+
+    // 3)
+    const failed_students = all_students.filter(stu => stu.math <= 60);
+    console.log(failed_students);
+
+    // 4)
+
+    // 학생 객체들로 이루어진 배열에 reduce()를 사용하여 총합을 구하기 위해서는
+    // 초기의 prev값이 0이 되어야 한다
+    // reduce(callbackfn, initialValue)
+    const avgStar = all_students.reduce((sum, stu) => sum + stu.star, 0) / all_students.length;
+    console.log("평균만족도: ", avgStar)
+
+// -----------------------------------------------------------------------
+
+    const addColumnHeader = (table, columnName) => 
+        table.innerHTML += `<div class="column-header">${columnName}</div>`
+
+    const addLine = (table, stu) => {
+        for (key in stu) {
+            table.innerHTML += `<div class="table-data">${stu[key]}</div>`
+        }
+    };
+
+    // 테이블명과 데이터를 받으면 추가되는 함수
+    const addData = (tableName, data) => {
+        const table = document.getElementById(tableName);
+
+        table.style.display = "grid";
+        let size = 0;
+        // key값을 확인할 수 있다
+        for (key in data[0]) {
+            // table = 위에 const에 저장한 table (id가져온거) key는 data key
+            addColumnHeader(table, key);
+            ++size;
+        }
+        table.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+        data.forEach(stu => addLine(table, stu));
+    }
+
+    // 테이블 id와 데이터만 전달하면 알아서 모든 행이 추가되게 함
+    addData("all_table", all_students);
+    addData("avg_table", all_students_avg);
+    addData("math_failed_table", failed_students);
+
+
+    </script>
+    
+</body>
+</html>

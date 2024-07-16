@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>16_HTML 요소 선택하기</title>
+
+    <style>
+        /* 
+            자바스크립트로 요소의 클래스 속성을 수정하면 
+            보였다 안보였다 하게 만들 수 있다 
+        */
+        .visible {
+            visibility: visible;
+        }
+
+        .invisible {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,16 +33,59 @@
     <h3># 원하는 요소를 쉽게 선택하기 위한 document의 메서드들</h3>
     <ul>
         <li>document.getElementByID(id) : id로 원하는 요소를 선택한다</li>
-        <li>document.getElementTagName(tagName) : 
-            해당 태그명의 모든 요소를 선택한다</li>
-        <li>document.getElementClassName(className) : 
-            해당 클래스 속성을 지닌 모든 요소를 선택한다</li>
+        <li>
+            document.getElementTagName(tagName) : 
+            해당 태그명의 모든 요소를 선택한다
+        </li>
+        <li>
+            document.getElementClassName(className) : 
+            해당 클래스 속성을 지닌 모든 요소를 선택한다
+        </li>
+        <li>
+            document.querySelector(cssSelector) :
+            CSS선택자를 활용해 원하는 요소 하나를 선택한다
+        </li>
+        <li>
+            document.querySelectorAll(cssSelector) :
+            CSS선택자를 활용해 원하는 요소 여러개를 선택한다
+        </li>
+    </ul>
+
+    <h3># 선택한 HTML요소를 변경하기</h3>
+    <ul>
+        <li>
+            element.innerHTML : 
+            해당 요소의 내용을 변경한다 (tag 적용, 보안 위험함)
+        </li>
+        <li>
+            element.innerText : 
+            해당 요소의 내용을 변경한다 (tag 미적용, 보안 좋음)
+        </li>
+        <li>
+            element.attribute : 해당요소의 속성을 직접 변경할 수 있다
+        </li>
+        <li>
+            element.setAttribute(): 
+            해당 요소의 속성을 메서드로 변경할 수 있다
+        </li>
+        <li>
+            element.classList : 
+            해당 요소의 클래스들을 리스트 형태로 관리하는 객체
+        </li>
+        <li>
+            element.style.CSSpropertyName :
+            해당 요소의 스타일 속성을 직접 변경할 수 있다.
+            -가 포함된 property는 camelCase로 변경해야 한다
+            (e. g. border-width => borderWidth)
+        </li>
     </ul>
 
     <div>
         <div id="div1" class="box red"></div>
         <div id="div2" class="box important"></div>
         <div id="div3" class="box important"></div>
+        <img src="" alt="" id="img1">
+        <img src="../img/cd2f39a0598c81712450b871c218164f_1482469221_493.jpg" alt="토토로친구" id="img2" class="invisible box border">
     </div>
 
     <script src="js/16_scirpt.js"></script>

@@ -1,0 +1,51 @@
+#game-box {
+    display: flex;
+    align-items: center;
+    gap: 0 50px;
+}
+
+.game-money-wrap {
+    display: flex;
+    gap: 5px;
+}
+
+.user-pic-icon {
+    user-select: none;
+}
+
+.user-pic-icon .fa-hand:hover,
+.user-pic-icon .fa-hand-peace:hover,
+.user-pic-icon .fa-hand-back-fist:hover {
+    color: yellowgreen;
+    transition: all .3s;
+}
+
+.com-icon {
+    margin-top: 5px;
+}
+
+#result-wrap {
+    margin-left: 100px;
+}
+
+#result-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* .img-wrap {
+    position: relative;
+} */
+
+img[class*="-img"] {
+    width: 100px;
+    /* position: absolute;
+    top: -45px;
+    left: 105px; */
+}
+
+img[class*="-img"].off {
+    display: none;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20_WebStorage</title>
+
+    <link rel="stylesheet" href="css/20.style.css">
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <h3># Web Storage API</h3>
+
+    <ul>
+        <li>자바스크립트로 웹브라우저에 데이터를 보관할 수 있는 공간</li>
+        <li>데이터를 key/value 형태로 저장해 놓을 수 있다</li>
+        <li>로컬 스토리지는 웹브라우저를 종료하더라도 데이터가 유지된다</li>
+        <li>
+            세션 스토리지는 웹브라우저를 종료하면 데이터가 삭제된다
+            (웹브라우져가 켜져있는 동안만 유지되는 데이터)
+        </li>
+        <li>
+            데이터는 문자열로 저장 된다
+        </li>
+    </ul>
+
+    <h3># 가위바위보 게임 만들어보기</h3>
+
+    <ul>
+        <li>웹페이지 상에서 동작하는 간단한 가위바위보 게임을 하나 만든다</li>
+        <li>해당 웹페이지에 최초로 접속했을 때는 사용자의 이름을 입력 받아야 한다</li>
+        <li>가위바위보를 진행할 때 마다 소지금과 전적이 계속 변한다</li>
+        <li>웹 브라우져를 껏다 켜도 소지금과 전적이 유지되도록 만들어라</li>
+    </ul>
+
+    <hr>
+
+    <form class="user-name-form">
+        <label for="input-name">이름을 입력하세요</label>
+        <input type="text" id="input-name">
+    </form>
+    <span class="user-name off"></span>
+    <h4>선택하세여</h4>
+    <div class="game-money-wrap">
+        <p>겜머니: </p>
+        <p class="game-money"></p>
+    </div>
+
+    <div id="game-box">
+        <div class="user-wrap">
+            <div class="user-text">
+                <p>너: </p>
+                <p class="user-pic"></p>
+            </div>
+            <div class="user-pic-icon fa-3x">
+                <i class="fa-regular fa-hand"></i>
+                <i class="fa-regular fa-hand-peace"></i>
+                <i class="fa-regular fa-hand-back-fist"></i>
+            </div>
+        </div>
+        <div class="vs fa-3x">
+            <i class="fa-solid fa-v"></i>
+            <i class="fa-solid fa-s"></i>
+        </div>
+        <div id="com-wrap">
+            <div class="com-text">
+                <p>컴퓨터: </p>
+                <div class="com-rcp"></div>
+            </div>
+            <div class="com-icon fa-3x">
+            </div>
+        </div>
+        <div id="result-wrap">
+            <div class="result"></div>
+            <div class="img-wrap">
+                <img src="../img/winner_7430652.png" alt="이겼다" class="winner-img off">
+                <img src="../img/hand-down_4875523.png" alt="졌다" class="loser-img off">
+                <img src="../img/drawn-game.png" alt="졌다" class="draw-img off">
+            </div>
+        </div>
+    </div>
+    <div class="list-wrap">
+        <p>결과 목록</p>
+        <ul class="result-list">
+        </ul>
+    </div>
+
+    <script src="js/20_script.js"></script>
+
+</body>
+</html>

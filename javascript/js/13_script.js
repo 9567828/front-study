@@ -58,3 +58,16 @@ const wolf = {
 };
 
 wolf.bite("토토로 친구");
+
+// this는 객체의 메서드 내부에서 해당 객체를 가리키는 것
+// 객체의 메서드 밖에서는 올바르게 동작하지 않는다
+
+function makeFruit(name, price) {
+    return {
+        name,
+        price: price * 2,
+        ref: this,
+    }
+}
+
+makeFruit()

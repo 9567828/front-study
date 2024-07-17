@@ -18,11 +18,11 @@ dog.jump();
 
 // 객체에 메서드를 정의할 때도 단축 프로퍼티 문법을 사용할 수 있다
 const turtle = {
-  name: "거북이",
-  age: 200,
-  introduce() {
+    name: "거북이",
+    age: 200,
+    introduce() {
     console.log(`안녕? 나는 ${this.name}, ${this.age}살`);
-  }, // introduce: function() {} 과 동일한 결과
+    }, // introduce: function() {} 과 동일한 결과
 };
 
 turtle.introduce();
@@ -30,12 +30,12 @@ turtle.introduce();
 // 메서드를 정의할 때 화살표 함수를 사용하면 this를 사용하지 못한다
 // this를 활용하려면 function() 을 사용해야 한다
 const bear = {
-  name: "쿠마",
-  bite: (enemy) => {
-    // 화살표 함수의 this는 현재 객체 바깥을 참조하게 된다
-    console.dir(this);
-    console.log(`${this.name} ${enemy} 세게 물었다`);
-  },
+    name: "쿠마",
+    bite: (enemy) => {
+        // 화살표 함수의 this는 현재 객체 바깥을 참조하게 된다
+        console.dir(this);
+        console.log(`${this.name} ${enemy} 세게 물었다`);
+    },
 };
 
 bear.bite("토토로");

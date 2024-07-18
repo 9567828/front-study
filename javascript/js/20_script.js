@@ -102,11 +102,17 @@ function printResultList (text) {
 
 const userForm = document.querySelector(".user-name-form")
 const inputName = document.querySelector("#input-name")
-const userName = document.querySelector(".user-name")
+let userNameText = document.querySelector(".user-name")
 
-function printName (name) {
-    userName.innerText = `입력한 이름: ${name}`;
-    window.localStorage.setItem("username", name)
+let userName = localStorage.getItem("userName")
+function printName(name) {
+    userNameText.innerText = name;    
+}
+
+while (!userName) {
+    if(userName) {
+        localStorage.setItem("userName", userName)
+    }
 }
 
 userForm.addEventListener('submit', (e) => {

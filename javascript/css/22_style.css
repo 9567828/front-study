@@ -1,0 +1,68 @@
+#game-display {
+    width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 150px;    
+}
+
+#game-display > * {
+    border-bottom: solid 1px #9c9797;
+    text-align: center;
+    /* height: 300px; */
+}
+
+.player-shape {
+    width: 250px;
+    height: 250px;
+    margin: 10px auto;
+}
+
+.vs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+    가위 (-5px, 5px, size: cover)
+    바위 (-323px, -41px / size: auto 350px)
+    보 (-393px -3px, size: cover)
+*/
+#user-choice-display,
+#computer-choice-display {
+    background-image: url("");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#player-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#player-panel > button {
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: salmon;
+    cursor: pointer;
+}
+
+#player-panel > button:hover {
+    font-weight: bold;
+    border: solid 1px #868686;
+    background-color: rgb(252, 105, 88);
+    box-shadow: 1px 3px 4px 0px rgb(0, 0, 0, 0.6);
+}
+
+#result-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

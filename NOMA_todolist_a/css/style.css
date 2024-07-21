@@ -1,0 +1,229 @@
+
+/* common */
+.inner {
+  width: 1440px;
+  margin: auto;
+  position: relative;
+}
+.hidden {
+  display: none;
+}
+
+/* bg_img */
+#bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+/* clock */
+#clock {
+  font-size: 150px;
+  font-weight: 700;
+  color: #142E34;
+  text-align: center;
+  padding-top: 110px;
+}
+
+/* greeting */
+h1#greeting {
+  text-align: center;
+  font-size: 50px;
+  color: #142E34;
+  padding-top: 40px;
+}
+
+/* weather */
+#weather {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+.loca {
+  padding-left: 20px;
+}
+.loca span:last-child {
+  text-transform: capitalize;
+  font-style: italic;
+}
+#weather .weather_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weather_wrap span {
+  font-size: 60px;
+}
+.temp_wrap {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+.temp_wrap span:nth-of-type(1) {
+  font-size: 40px;
+}
+.temp_wrap span:nth-of-type(2) {
+  font-size: 20px;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+/* login form */
+#login_form {
+  padding: 235px 0;
+}
+.login_box {
+  width: 400px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+.login_box input {
+  width: 310px;
+  height: 60px;
+  padding-left: 20px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  outline: none;
+  font-size: 20px;
+}
+.login_box input:focus {
+  border: 1px solid #142E34;
+}
+.login_box button {
+  width: 80px;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #fff;
+  background-color: #142E34;
+}
+button:disabled,
+button[disabled] {
+  background-color: #cccccc;
+  color: #6b6b6b;
+}
+
+
+/* todo form */
+.todo_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+.todo_box {
+  width: 400px;
+  height: 60px;
+  background-color: #142E34;
+  text-align: center;
+  line-height: 75px;
+  border-radius: 10px 10px 0 0;
+}
+.todo_box input {
+  width: 350px;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  border: none;
+  outline: none;
+  background-color: #142E34;
+}
+.list_wrap {
+  width: 400px;
+  height: 380px;
+  padding-bottom: 20px;
+  border-radius: 0 0 10px 10px;
+  overflow-y: scroll;
+  background-color: #fff;
+}
+.list_wrap::-webkit-scrollbar {
+  width: 8px; /* 스크롤바 너비 */
+}
+.list_wrap::-webkit-scrollbar-track { /* 스크롤 바 배경 */
+  height: 90%;
+  background-color: transparent; /*스크롤 바 배경 색상*/
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  background-clip: content-box;
+} 
+
+.list_wrap::-webkit-scrollbar-thumb {  /* 스크롤바 막대 */
+  height: 10%;
+  background-clip: padding-box;
+  border: 2px solid transparent; /*스크롤 바 양옆 여백*/ 
+  border-radius: 8px;
+  background-color: #ccc; /*스크롤 바 색상*/ 
+}
+
+.list_wrap ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+.list_wrap li {
+  width: 350px;
+  height: 60px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #142E34;
+  /* border-bottom: 1px solid #142E34; */
+}
+.list_wrap input {
+  margin-right: 20px;
+}
+.list_wrap .fa-solid.fa-trash-can {
+  color: #6b6b6b;
+  cursor: pointer;
+}
+
+.txt_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+/* .txt_wrap span {
+  display: block;
+} */
+.txt_wrap span:last-child {
+  font-size: 13px;
+  color: #6b6b6b;
+  margin-top: 4px;
+}
+
+/* quote */
+#quote {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#quote.on {
+  padding-top: 50px;
+}
+#quote span {
+  color: #fff;
+}
+#quote span:last-child {
+  padding-top: 5px;
+}
+#quote span:last-child::before {
+  content: 'from. ';
+}

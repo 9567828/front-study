@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22_가위바위보</title>
+
+    <link rel="stylesheet" href="css/22_style.css">
+
+    <!-- 폰트어썸 -->
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <h3># 가위바위보 게임 만들어보기 - 풀이</h3>
+
+    <ul>
+        <li>웹페이지 상에서 동작하는 간단한 가위바위보 게임을 하나 만든다</li>
+        <li>해당 웹페이지에 최초로 접속했을 때는 사용자의 이름을 입력 받아야 한다</li>
+        <li>가위바위보를 진행할 때 마다 소지금과 전적이 계속 변한다</li>
+        <li>웹 브라우져를 껏다 켜도 소지금과 전적이 유지되도록 만들어라</li>
+    </ul>
+
+    <hr>
+
+    <div id="game-display">
+        <div>
+            <div class="player-title">유저</div>
+            <div id="user-choice-display" class="player-shape"></div>
+        </div>
+        <div class="vs fa-3x">
+            <i class="fa-solid fa-v"></i>
+            <i class="fa-solid fa-s"></i>
+        </div>
+        <div>
+            <div class="player-title">컴퓨터</div>
+            <div id="computer-choice-display" class="player-shape"></div>
+        </div>
+        <div id="player-panel">
+            <!-- html 속성으로 인해서 괄호안에는 작은땀표쓰는것 -->
+            <button onclick="userChoice('scissors')">가위</button>
+            <button onclick="userChoice('rock')">바위</button>
+            <button onclick="userChoice('paper')">보</button>
+        </div>
+        <div id="result-panel">
+            <div id="score-label"></div>
+            <div id="result-label"></div>
+        </div>
+        <div></div>
+    </div>
+
+    
+    <script src="js/22_script.js"></script>
+</body>
+</html>

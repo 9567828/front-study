@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17_이벤트</title>
+    <style>
+        #div1 {
+            width: 150px;
+            height: 150px;
+            border: solid 1px #000;
+            background-color: antiquewhite;
+            user-select: none;
+        }
+
+        #div1.on {
+            background-color: tomato;
+        }
+
+        div[id^=tic-tac-toe] {
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px;
+            gap: 3px;
+        }
+
+        div[id^=tic-tac-toe] > * {
+            border: solid 2px #000;
+            user-select: none;
+            font-size: 40px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        /* 이벤트를 부모요소에 달아보자 */
+        #tic-tac-toe2 {
+            border: solid 3px red;
+        }
+
+        div[id*=out-div]  {
+            padding: 20px;
+            color: white;
+            font-size: 30px;
+            background-color: rebeccapurple;
+            border: solid 3px #000;
+            border-radius: 20px;
+        }
+        #mid-div, #cap-mid-div {
+            margin: 20px;
+            padding: 20px;
+            background-color: orange;
+            border: solid 3px #000;
+            border-radius: 10px;
+        }
+        #inner-div, #cap-inner-div {
+            margin: 20px;
+            padding: 20px;
+            background-color: cadetblue;
+            border: solid 3px #000;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <h3># HTML 이벤트 속성</h3>
+    <ul>
+        <li>앞에 on이 붙는 속성들은 자바스크립트 이벤트 속성이다</li>
+        <li>
+            해당 이벤트 속성의 값으로 자바스크립트 코드(콜백함수)를 
+            정의해 돌 수 있다. (콜백 함수에는 이벤트 정보 객체가 넘어온다)
+        </li>
+        <li>
+            해당 요소의 HTML속성에 자바스크립트 코드를 정의해 둘 수 있다
+            (this로 해당 요소를 가리킬 수 있다)
+        </li>
+        <li>
+            해당 요소의 addEventListener() 메서드를 사용하여 이벤트를
+            추가할 수 있다
+            (해당 이벤트 속성에서 on을 빼고 추가 해야 한다)
+        </li>
+    </ul>
+
+    <div id="div1" onmouseleave="this.innerText = '마우스가 떠났다...'">hello</div>
+
+
+    <h3># 여러 요소에서 하나의 이벤트 사용하기</h3>
+    <div id="tic-tac-toe">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div> 
+    
+
+    <h3># 부모 요소에만 이벤트 추가하여 자식 요소들 제어하기 (이벤트위임)</h3>
+    <ul>
+        <li>
+            이벤트를 부모요소에만 추가하여 활용할 수 있다
+        </li>
+        <li>
+            정확하게 이벤트를 발생시킨 요소
+            (이벤트를 발생 시켰을 당시 가장 안쪽에 있는 요소(자식)): 
+            target
+        </li>
+        <li>
+            이벤트가 달려있는 요소: currentTarget
+        </li>
+    </ul>
+
+    <hr>
+    <div id="tic-tac-toe2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <h3># 이벤트 버블링 (Bubbling)</h3>
+
+    <ul>
+        <li>
+            중첩된 요소에서 이벤트가 발생 했을 때 이벤트가
+            자식요소부터 부모 요소까지 전이되는 과정
+        </li>
+        <li>
+            이벤트가 발생한 자식 요소부터 중첩되어있는 부모 요소까지
+            진행하면서 각 요소에 이벤트 핸들러를 동작(발생)시킨다
+        </li>
+    </ul>
+
+    <div id="out-div">
+        제일 바깥 요소
+        <div id="mid-div">
+            중간에 있는 요소
+            <div id="inner-div">
+                제일 안쪽에 있는 요소
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+
+    <h3># 이벤트 캡쳐링</h3>
+    <ul>
+        <li>버블링보다 먼저 일어나고 있는 이벤트 처리 단계</li>
+        <li>
+            버블링과 반대로 부모 요소부터 자식 요소까지 전이되는 
+            이벤트 처리 순서
+        </li>
+        <li>캡처링이 진행 된 이후에 버블링이 다시 진행된다</li>
+    </ul>
+
+    <div id="cap-out-div">
+        제일 바깥 요소
+        <div id="cap-mid-div">
+            중간에 있는 요소
+            <div id="cap-inner-div">
+                제일 안쪽에 있는 요소
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/17_script.js"></script>
+</body>
+</html>

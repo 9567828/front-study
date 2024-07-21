@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+.sub-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-right: 30px;
+}
+
+.sub-info > div > p {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.head {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 50px;
+    margin-bottom: 10px;
+    line-height: 3;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px 0px rgb(0, 0, 0, 0.6);
+    transition: all .3s ease-in-out;
+    user-select: none;
+    cursor: pointer;
+}
+
+.head .head-right-arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(0);
+}
+
+.head .head-right-arrow.active {
+    transform: rotate(90deg);
+}
+
+.head > ul {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    list-style-type: none;
+}
+
+.head > ul > li {
+    font-weight: bold;
+}
+
+.stu-info-wrap {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-items: center;
+}
+
+.stu-info-wrap.off {
+    display: none;
+}
+
+div[class^="stu-"] > div:not(.stu-star) {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    gap: 30px;
+}

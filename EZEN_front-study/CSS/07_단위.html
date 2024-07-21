@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07_단위</title>
+    <link rel="stylesheet" href="./style/07_style.css" />
+  </head>
+  <body>
+    <h3># 절대 길이 단위</h3>
+
+    <ul>
+      <li>
+        웹브라우저(또는 다른 프로그램)의 크기가 변하더라도 항상 일정한 크기를
+        가지는 단위
+      </li>
+      <li>px: 픽셀(화소)</li>
+      <li>mm: 밀리리터</li>
+      <li>cm: 센치미터</li>
+      <li>in: 인치</li>
+    </ul>
+
+    <div id="div1" class="abs-units">100px</div>
+    <div id="div2" class="abs-units">50mm</div>
+    <div id="div3" class="abs-units">5cm</div>
+    <div id="div4" class="abs-units">5in</div>
+
+    <h3># 상대 길이 단위</h3>
+
+    <ul>
+      <li>
+        화면을 보는 프로그램(viewport)의 크기가 변하면 크기가 함께 변하는 단위
+      </li>
+      <li>
+        %: 부모 요소의 몇 %를 차지하는가 (부모 요소의 크기가 변하면 변한다)
+      </li>
+      <li>em: 현재 요소의 font-size 값에 비례한 크기 설정</li>
+      <li>rem: 현재 페이지(html)의 font-size 값에 비례한 크기 설정</li>
+      <li>
+        vw: viewport width, 현재 화면 너비에 비례한 크기 설정<br />
+        (1vw는 현재 화면 전체 너비의 1%를 의미)
+      </li>
+      <li>
+        vh: viewport height, 현재 화면 높이에 비례한 크기 설정<br />
+        (1vh는 현재 화면 전체 높이의 1%를 의미)
+      </li>
+    </ul>
+
+    <div id="size1" class="rel-units">50%</div>
+    <div id="size2" class="rel-units">10em</div>
+    <div id="size3" class="rel-units">10rem</div>
+    <div id="size4" class="rel-units">10vw</div>
+    <div id="size5" class="rel-units">10vh</div>
+  </body>
+</html>

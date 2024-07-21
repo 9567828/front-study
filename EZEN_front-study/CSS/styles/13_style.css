@@ -1,0 +1,41 @@
+ul {
+    list-style-type: none;
+}
+
+#test {
+    width: 650px;
+    font-size: 25px;
+    text-align: justify;
+    position: relative;
+}
+
+#test::first-letter {
+    font-weight: bold;
+    /* 기본크기의 1.2배 */
+    font-size: 1.2em;
+}
+
+#test::first-line {
+    text-decoration: underline solid 1px #000;
+}
+
+#test::selection {
+    background-color: #d2c2ff;
+}
+
+#test::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 100px;
+    border: solid 1px salmon;
+}
+
+#test::after {
+    content: "";
+    position: absolute;
+    margin-left: 500px;
+    bottom: 0;
+    width: 100px;
+    border: solid 1px salmon;
+}

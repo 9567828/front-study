@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18_position</title>
+
+    <link rel="stylesheet" href="./styles/18_style.css">
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h3># position property</h3>
+
+    <ul>
+        <li>
+            포지션이 설정되지 않은 다른 요소들을 무시하면서 마음대로 배치할 수 있는 속성
+        </li>
+        <li>요소위에 요소를 겹칠 수 있다</li>
+        <li>static: 포지션이 설정되지 않은 상태</li>
+        <li>absolute: 절대값으로 위치를 설정</li>
+        <li>relative: 원래 있던 위치로부터 상대적으로 위치를 설정</li>
+        <li>fixed: 고정적인 위치를 설정</li>
+        <li>sticky: 원래 자리에 있다가 스크롤이 내려갈 때 고정될 위치를 설정</li>
+        <li>포지션 속성을 설정한 후 top, left, bottom, right 속성으로 위치를 정할 수 있다</li>
+    </ul>
+
+    <hr>
+
+    <h3># position: absolute</h3>
+
+    <!-- position이 absolute가 되면 본인이 보유하고 있던 영역이 사라진다 -->
+    <div style="border: solid 3px saddlebrown;">
+        <div id="box1" class="absolute-box">absolute-box</div>
+        <div id="box2" class="absolute-box">absolute-box</div>
+        <div id="box3" class="absolute-box">absolute-box</div>
+    </div>
+
+    <h3># postion: relative</h3>
+    <ul>
+        <li>absolute는 본인의 영역을 완전히 버리고 자기 위치를 찾아간다</li>
+        <li>relative는 본인의 원래 영역을 차지한 채로 자기 위치를 찾아간다</li>
+    </ul>
+    <div id="box4" class="relative-box">relative-box</div>
+    <div id="box5" class="relative-box">relative-box</div>
+    <div id="box6" class="relative-box">relative-box</div>
+
+    <h3># 포지션이 설정 된 부모 요소 내부에서의 위치설정</h3>
+    <ul>
+        <li>부모 요소의 psotion이 static이면 포지션이 설정된 요소는 부모 요소를 벗어나서 설정된다</li>
+        <li>부모 요소에 static이 아닌 다른 포지션이 설정되어 있다면 해당 부모 요소 내부에서 위치를 찾는다</li>
+    </ul>
+
+    <div id="container1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <div id="container2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+
+    <h3># position: fixed</h3>
+
+    <ul>
+        <li>항상 고정된 위치를 차지하는 요소가 된다</li>
+        <li>스크롤이 있어야 제대로 동작하는지 확인할 수 있다</li>
+    </ul>
+
+    <div id="aside-bar">
+        <button><i class="fa-solid fa-x"></i></button>
+        <i class="fa-solid fa-bars"></i>
+        <div>메뉴</div>
+        <div>찾아오시는 길</div>
+        <div>지도</div>
+        <div>가맹점문의</div>
+    </div>
+
+    <h3># position: sticky</h3>
+
+    <ul>
+        <li>처음에는 relative처럼 동작</li>
+        <li>스크롤이 동작할 때는 fixed처럼 동작</li>
+    </ul>
+
+    <div id="sticky-bar">저는 sticky bar 입니다</div>
+    <div class="height">라라라라라라라라랄</div>
+    <div class="height">라라라라라라라라랄</div>
+    
+    <div id="sticky-bar2">저는 sticky bar2 입니다</div>
+
+
+    <div class="height">라라라라라라라라랄</div>
+    <div class="height">라라라라라라라라랄</div>
+
+</body>
+</html>

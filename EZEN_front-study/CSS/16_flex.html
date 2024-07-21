@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_flex</title>
+
+    <link rel="stylesheet" href="./styles/16_style.css">
+    <script src="https://kit.fontawesome.com/d95a86acc3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h3># display: flex</h3>
+
+    <ul>
+        <li>해당 요소의 display 속성을 flex로 변경하면 flex-box가 된다</li>
+        <li>해당 박스의 자식 요소들은 자동적으로 flex-item이 된다</li>
+        <li>flex-box는 내부 자식 요소들의 크기를 유연하게 조절해준다</li>
+        <li>유연하게 크기 조절이 되기 위해서는 width, height를 사용해야 한다 (padding은 적용안됨)</li>
+    </ul>
+
+    <div class="flex-box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <h3># flex-direction</h3>
+
+    <h5>* flex-direction: row (default)</h5>
+    <div class="flex-box flex-box-row">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <h5>* flex-direction: row-reverse</h5>
+    <div class="flex-box flex-box-row-reverse">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <h5>* flex-direction: column</h5>
+    <div class="flex-box flex-box-column">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <h5>* flex-direction: column-reverse</h5>
+    <div class="flex-box flex-box-column-reverse">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <h3># justify-content</h3>
+    <ul>
+        <li>flex-start: 요소들을 컨테이너의 왼쪽으로 정렬합니다.</li>
+        <li>flex-end: 요소들을 컨테이너의 오른쪽으로 정렬합니다.</li>
+        <li>center: 요소들을 컨테이너의 가운데로 정렬합니다.</li>
+        <li>space-between: 요소들 사이에 동일한 간격을 둡니다.</li>
+        <li>space-around: 요소들 주위에 동일한 간격을 둡니다.</li>
+    </ul>
+
+    <h3># align-content</h3>
+    <ul>
+        <li>flex-start: 요소들을 컨테이너의 꼭대기로 정렬합니다.</li>
+        <li>flex-end: 요소들을 컨테이너의 바닥으로 정렬합니다.</li>
+        <li>center: 요소들을 컨테이너의 세로선 상의 가운데로 정렬합니다.</li>  
+        <li>baseline: 요소들을 컨테이너의 시작 위치에 정렬합니다.</li> 
+        <li>stretch: 요소들을 컨테이너에 맞도록 늘립니다.</li> 
+    </ul>
+
+    <div class="control-panel">
+        <h3 class="info">justify-content</h3>
+        <div class="btn_wrap">
+            <div id="justify1" class="justify-btn">flex-start</div>
+            <div id="justify2" class="justify-btn">flex-end</div>
+            <div id="justify3" class="justify-btn">center</div>
+            <div id="justify4" class="justify-btn">space-between</div>
+            <div id="justify5" class="justify-btn">space-around</div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <h3 class="info">align-content</h3>
+        <div class="btn_wrap">
+            <div id="align-content1" class="align-content-btn">flex-start</div>
+            <div id="align-content2" class="align-content-btn">flex-end</div>
+            <div id="align-content3" class="align-content-btn">center</div>
+            <div id="align-content4" class="align-content-btn">baseline</div>
+            <div id="align-content5" class="align-content-btn">stretch</div>
+        </div>
+    </div>
+
+    <div class="control-panel">
+        <h3 class="info">flex-direction</h3>
+        <div class="btn_wrap">
+            <div id="flex-direction1" class="direction-btn">row</div>
+            <div id="flex-direction2" class="direction-btn">row-reverse</div>
+            <div id="flex-direction3" class="direction-btn">column</div>
+            <div id="flex-direction4" class="direction-btn">column-reverse</div>
+        </div>
+    </div>
+
+    <div id="content-pond" class="pond fa-3x">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <h3># flex를 활용해 웹 페이지 레이아웃 구성하기</h3>
+
+    <div class="flex-layout">
+        <header>header</header>
+        <div class="content">
+            <nav>nav</nav>
+            <main>main content</main>
+            <aside>aside bar</aside>
+        </div>
+        <footer>footer</footer>
+
+    </div>
+
+
+    <script>
+        let ponds = document.getElementById("content-pond");
+        
+        // id가 아닌 class로 요소를 가져오면 배열 형태로 꺼내온다
+        let justifyBtns = document.getElementsByClassName("justify-btn");
+        for (var i = 0; i < justifyBtns.length; ++i) {
+            let btn = justifyBtns[i];
+
+            // 자바스크립트에서 onclic동작 정의하기
+            btn.onclick = function () {
+                // 버튼들의 값을 css로 전환하겠다
+                // css의 속성이름이 justify-content처럼
+                // -가 포함되면 자바스크립트에서는 camelCase로 표현한다
+                ponds.style.justifyContent = btn.innerText;
+            }
+        };
+
+        let alignBtns = document.getElementsByClassName("align-content-btn")
+        for (let i = 0; i < alignBtns.length; ++i) {
+            let btn = alignBtns[i];
+
+            btn.onclick = function () {
+                ponds.style.alignItems = btn.innerText;
+            };
+        };
+
+        let directionBtns = document.getElementsByClassName("direction-btn")
+        for (let i = 0; i < directionBtns.length; ++i) {
+            let btn = directionBtns[i];
+
+            btn.onclick = function () {
+                ponds.style.flexDirection = btn.innerText;
+            };
+        };
+
+    </script>
+</body>
+
+</html>

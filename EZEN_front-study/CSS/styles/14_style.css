@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+}
+
+.para {
+    padding: 10px;
+    border: solid 1px #000;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.left-floating-img {
+    width: 200px;
+    margin-right: 15px;
+    float: left;
+}
+
+.right-floating-img {
+    width: 200px;
+    margin-left: 15px;
+    float: right;
+}
+
+.clear-right {
+    clear: right;
+}
+
+.clear-left {
+    clear: left;
+}
+
+#float-layout {
+    background-color: salmon;
+    color: #fff;
+    font-size: 40px;
+    border: solid 3px #000;
+}
+
+#float-layout > div {
+    float: left;
+}
+
+#float-layout > div:first-child {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    background-color: #2addd4;
+}
+
+#float-layout > div:nth-child(2) {
+    width: 20%;
+    height: 500px;
+    padding: 15px;
+    background-color: #c265ff;
+}
+
+#float-layout > div:nth-child(3) {
+    width: 80%;
+    height: 500px;
+    background-color: #752253;
+}
+
+#float-layout > div:nth-child(4) {
+    width: 50%;
+    height: 120px;
+    padding: 15px;
+    background-color: #a8ff60;
+}
+
+#float-layout > div:nth-child(5) {
+    width: 50%;
+    height: 120px;
+    padding: 15px;
+    background-color: #f78747;
+}
+
+#float-layout::after {
+    content: "";
+    clear: left;
+    /* 
+    ::after를 div취급받게 해주는 옵션
+    (::after는 기본 span취급)
+    */
+    display: block;
+}
+
+/* 연습 */
+#layout {
+    margin-top: 20px;
+    padding: 10px;
+    color: #fff;
+    font-size: 40px;
+}
+
+#layout > div {
+    float: left;
+    border: solid 2px #000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#layout > div:first-child {
+    width: 100%;
+    height: 80px;
+    background-color: #ff2121;
+}
+
+#layout > div:nth-child(2) {
+    width: 100%;
+    height: 80px;
+    background-color: #3ca1ff;
+}
+
+#layout > div:nth-child(3) {
+    width: 60%;
+    height: 150px;
+    background-color: #fad921;
+}
+
+#layout > div:nth-child(4) {
+    width: 39.5%;
+    height: 310px;
+    float: right;
+    background-color: #ff4df6;
+}
+
+#layout > div:nth-child(5) {
+    width: 60%;
+    height: 150px;
+    background-color: #ff3f25;
+}
+
+#layout > div:nth-child(6) {
+    width: 100%;
+    height: 80px;
+    background-color: #333;
+}
+
+#layout::after {
+    content: "";
+    clear: left;
+    display: block;
+}
+
+/* 연습풀이 */
+#layout2 {
+    height: 825px;
+    padding: 1%;
+    border: solid 1px #000;
+}
+
+#layout2 > * {
+    margin-bottom: 1%;
+    float: right;
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+    border: solid 2px #000;
+}
+
+#layout2 > header {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    background-color: red;
+}
+
+#layout2 > nav {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    background-color: dodgerblue;
+}
+
+#layout2 > aside {
+    width: 34.5%;
+    height: 56.2%;
+    margin-left: .5%;
+    padding-top: 180px;
+    background-color: palevioletred;
+}
+
+#layout2 > section {
+    width: 64.5%;
+    height: 27%;
+    margin-right: .5%;
+    padding-top: 80px;
+    background-color: peru;
+}
+
+#layout2 > article {
+    width: 64.5%;
+    height: 27%;
+    margin-right: .5%;
+    padding-top: 80px;
+    background-color: salmon;
+}
+
+#layout2 > footer {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    background-color: gray;
+}
+
+#layout2::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#container {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container > * {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+#container > header {
+    background-color: red;
+}
+
+#container > nav {
+    background-color: skyblue;
+}
+
+.wrap {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.wrap .content {
+    width: 80%;
+}
+
+.wrap .content > aside {
+    background-color: lightsalmon;
+    height: 50%;
+}
+
+.wrap .content > section {
+    background-color: lightcoral;
+    height: 50%;
+}
+
+.wrap > article {
+    width: 20%;
+    background-color: palevioletred;
+}
+
+#container > footer {
+    background-color: grey;
+}

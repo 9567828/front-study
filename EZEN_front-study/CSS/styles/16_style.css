@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-box {
+    display: flex;
+    border: solid 1px dodgerblue;
+}
+
+.flex-box > * {
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    /* padding은 크기조절이 유연하게 안된다 */
+    font-size: 40px;
+    border: solid 1px tomato;
+}
+
+.flex-box-row {
+    flex-direction: row;
+}
+
+.flex-box-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-box-column {
+    flex-direction: column;
+}
+
+.flex-box-column-reverse {
+    flex-direction: column-reverse;
+}
+
+/* 예제만들기 */
+
+.control-panel {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.info {
+    margin: 0;
+    padding: 10px 0 5px 0;
+}
+
+.btn_wrap {
+    display: flex;
+}
+
+.btn_wrap > * {
+    width: 200px;
+    margin-right: 5px;
+    padding: 20px;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    background-color: #000;
+    /* 해당 요소에서 블록 지정을 막을 수 있음 */
+    user-select: none;
+    cursor: pointer;
+}
+
+.btn_wrap > *:hover {
+    background-color: #6d6d6d;
+}
+
+.btn_wrap > *:active {
+    background-color: #824cff;
+}
+
+/* justify-content */
+.pond {
+    display: flex;
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    border: solid 3px steelblue;
+}
+
+.pond > * {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    font-size: 40px;
+}
+
+.pond > :first-child {
+    border: solid 3px green;
+}
+
+.pond > :nth-child(2) {
+    border: solid 3px yellowgreen;
+}
+
+.pond > :nth-child(3) {
+    border: solid 3px red;
+}
+
+.flex-layout {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-size: 30px;
+    line-height: 3;
+    text-align: center;
+}
+
+.flex-layout > * {
+    text-transform: uppercase;
+}
+
+.flex-layout > header {
+    background-color: red;
+}
+
+.flex-layout > .content {
+    display: flex;
+    height: 500px;
+    flex-direction: row;
+}
+
+.flex-layout > .content > nav {
+    flex: 1;
+    order: 1;
+    background-color: forestgreen;
+}
+
+.flex-layout > .content > main {
+    flex: 3;
+    background-color: orange;
+}
+
+.flex-layout > .content > aside {
+    flex: 1;
+    order: -1;
+    background-color: slateblue;
+}
+
+.flex-layout > footer {
+    background-color: gray;
+}

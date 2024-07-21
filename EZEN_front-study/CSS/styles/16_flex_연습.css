@@ -1,0 +1,89 @@
+/* 샘플 만들어보기 */
+#sample {
+    margin: 10px auto;
+    padding: 20px;
+    width: 900px;
+}
+
+div[id^=pond] {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px cadetblue;
+}
+
+#pond1 {
+    justify-content: flex-end;
+}
+
+#pond2 {
+    justify-content: space-around;
+}
+
+#pond3 {
+    height: 300px;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#pond4 {
+    height: 300px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.aqua {
+    order: -1;
+    align-self: flex-end;
+}
+
+.black {
+    align-self: center;
+}
+
+#pond5 {
+    background-color: #000;
+    flex-direction: column;
+}
+
+.fa-rocket {
+    padding-top: 100px;
+    align-self: center;
+}
+
+#pond6 {
+    width: 100%;
+    flex-direction: column;
+}
+
+.icon {
+    display: flex;
+    padding: 10px 0 5px 0;
+    justify-content: center;
+    border-bottom: solid 1px brown;
+}
+
+.icon:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.icon:nth-child(4), .icon:nth-child(5) {
+    justify-content: flex-start;
+}
+
+.icon:first-child > .fa-brands {
+    padding-left: 350px;
+}
+
+.icon:nth-child(2) > .fa-brands {
+    padding-left: 100px;
+}
+
+.icon:nth-child(4) > .fa-brands {
+    padding-left: 300px;
+}
+
+.icon:nth-child(5) > .fa-brands {
+    padding-left: 100px;
+}

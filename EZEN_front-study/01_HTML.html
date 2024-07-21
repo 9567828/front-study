@@ -1,0 +1,160 @@
+<html>
+    <head>
+        <title>HTML연습</title>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+        
+        <div 
+        style="
+            width: 600px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            padding-left: 16px;
+            border: solid 1px #03c75a;
+            border-radius: 50px;
+            "
+        >
+            <span
+            style="
+                color: #03c75a;
+                font-size: 30px;
+            " 
+            class="material-symbols-outlined">
+                where_to_vote
+            </span>
+            <span
+                style="
+                    padding-left: 5px;
+                    margin-bottom: 3px;
+                "
+            >
+                제목입니다
+            </span>
+        </div>
+        
+        <p>제목 아래 문단입니다</p>
+
+        <h3>확장자(extention)</h3>
+        <p>
+            해당 운영체제가 파일을 어떤 프로그램으로 실행해야 할지 결정하는 기준<br>
+            (windows가 .jpg 파일을 그림 보는 프로그램으로 열어준다<br>
+             windows가 .mp3 파일을 음악 재생 프로그램으로 열어준다<br>
+             windows가 .tar.gz 파일을 압축 해제 프로그램으로 열어준다)<br>
+        </p>
+        <br>
+
+        <h3>HTML이란</h3>
+        <p>
+            웹 브라우져(Chrome, Edge, Whale, Safari, Firefox)가 <br>
+            해석하면 웹 페이지 모양이 되는 코드<br>
+            HTML에서 모든 공백(엔터키, 스페이스바, 탭 등)은 한 칸의 공백으로만 인식된다 <br>
+            하나의 웹 페이지는 3가지 언어를 사용해 만들 수 있다 <br>
+            (HTML, CSS, Javascript)
+        </p>
+
+        <h4>ex.</h4>
+        <p>
+            안
+            녕
+            하
+            세
+            요
+        </p>
+        <p>안               녕    하 세 요</p>
+        <hr
+            style="width: 600px;"
+        >
+        <br>
+
+        <h3>CSS 란?</h3>
+        <p>
+            HTML이 웹 페이지의 뼈대를 담당하고 <br>
+            CSS는 웹 페이지의 스타일을 담당한다 <br>
+            기본 HTML 요소의 모든 속성을 수정할 수 있다
+        </p>
+        <br>
+
+        <h3>Javascript</h3>
+        <p>
+            자바스크립트는 웹 페이지의 동작을 담당한다<br>
+            자바스크립트는 웹 브라우저 상에서 동작할 수 있는 프로그래밍 언어이다<br>
+        </p>
+
+        <h4>ex.</h4>
+        <button id="button">
+            눌러보세요!
+        </button>
+        <div 
+            style="
+                background-color: red;
+                border: 3px solid black;
+                width: 100px;
+                height: 100px;
+                position: relative;
+            "
+            id="square">
+        </div>
+
+        <script>
+            const colors = ['red', 'orange', 'blue', 'green', 'purple', 'navy' ]
+            const square = document.getElementById('square')
+            const btn = document.getElementById('button')
+
+            const getRandomColor = () => colors[parseInt(Math.random() * colors.length)]
+            const getRandomSize = () => parseInt((Math.random() * 50 + 100)) + 'px';
+
+            btn.addEventListener('click', (e) => {
+                // alert('눌림!')
+                square.style.backgroundColor = getRandomColor()
+                square.style.width = getRandomSize()
+            })
+
+            let x = 0, y = 0;
+
+            window.addEventListener('keydown', (e) => {
+                e.preventDefault()
+                //console.log(e)
+                if(e.keyCode == 37) { //왼쪽
+                    square.style.left = (x -= 1) + 'px';
+                    square.style.transform = "rotate(360deg)"
+                } else if(e.keyCode == 39) { //오른쪽
+                    square.style.left = (x += 1) + 'px';
+                } else if (e.keyCode == 38) { // 위
+                    square.style.top = (y -= 5) + 'px';
+                } else if (e.keyCode == 40) { //아래
+                    square.style.top = (y += 5) + 'px';
+                }
+            })
+
+        </script>
+
+    </body>
+</html>
+
+<!-- 
+    #16진수
+    0 1 2 3 4 5 6 7 8 9 A B C D E F
+    10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F
+    20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F
+
+    #8진수
+    0 1 2 3 4 5 6 7
+    10 11 12 13 14 15 16 17
+    20 21 22 23 24 25 26 27
+
+    #2진수
+    알고 있는 숫자가 2개라서 1에서 자리올림 발생
+    0 1 10 11 100 101 110 111 1000 1001 1010 
+    0 1 2  3  4   5   6   7   8    9    10
+    1 -> 1
+    10 -> 2
+    100 -> 4
+    1000 -> 8
+    10000 -> 16
+
+    * 프로그래머 16, 8, 2진수 많이 씀
+ -->

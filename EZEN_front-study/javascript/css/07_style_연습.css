@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  width: 800px;
+  margin: 50px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.calc_wrap {
+  width: 550px;
+  margin: auto;
+  padding: 20px 0 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border: solid 2px tomato;
+  border-radius: 20px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plus-input {
+  display: grid;
+  grid-template-columns: 1fr 1fr 10px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-wrap {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-box {
+  width: 100px;
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 50px;
+  border: solid 1px #eee;
+  box-shadow: 1px 2px 2px 0px rgb(0, 0, 0, 0.6);
+  font-size: 16px;
+}
+
+#eng-form > .input-wrap {
+  margin-right: 50px;
+}
+
+#alphabet {
+  width: 150px;
+  margin-right: -50px;
+}
+
+#yaksu-form {
+  padding-right: 10px;
+}
+
+input[type="submit"] {
+  display: none;
+}
+
+p[class*="result"] {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f93939;
+}

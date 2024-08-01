@@ -1,0 +1,99 @@
+#container {
+  width: 80%;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+header h3 {
+  font-family: "Londrina Shadow", sans-serif;
+  font-size: 6rem;
+  text-transform: uppercase;
+  margin-bottom: 5rem;
+}
+
+#img-wrap {
+  display: none;
+}
+
+#quiz-title, #quiz-word {
+  margin-bottom: 5rem;
+}
+
+#quiz-title .title,
+#quiz-word .text {
+  font-family: "Margarine", sans-serif;
+  font-size: 5rem;
+}
+
+#quiz-title .title {
+  text-transform: uppercase;
+}
+#quiz-title .chance {
+  font-size: 2rem;
+}
+
+#quiz-word .text {
+  padding-left: 2.5rem;
+  letter-spacing: 20px;
+}
+
+#quiz-word .text.off {
+  display: none;
+}
+
+#quiz-word .underline-wrap {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#quiz-word .underline {
+  width: 3.5rem;
+}
+
+#correct {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+#alphabet-wrap {
+  display: grid;
+  grid-template-columns: repeat(5, 5rem);
+  justify-items: center;
+  justify-content: center;
+  gap: 2rem 1rem;
+}
+
+#alphabet-wrap > button {
+  background-color: transparent;
+  font-family: "Margarine", sans-serif;
+  font-size: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+}
+
+button:disabled {
+  color: #000;
+}
+
+.circle, .ex {
+  position: absolute;
+  left: -0.7rem;
+}
+
+.ex {
+  width: 45px;
+}
+
+#alphabet-wrap > button:nth-child(9) > .circle,
+#alphabet-wrap > button:nth-child(9) > .ex {
+  left: -1.5rem;
+}
+
+#alphabet-wrap > button:nth-last-child(4) > .circle,
+#alphabet-wrap > button:nth-last-child(4) > .ex {
+  left: 0;
+}

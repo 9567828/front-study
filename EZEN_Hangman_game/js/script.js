@@ -36,6 +36,8 @@ function pickRandomTitle() {
 pickRandomTitle();
 
 const quizWord = document.querySelector(".text");
+const pickWord = pickRandomWord();
+
 function pickRandomWord() {
   if (randomTitle == 0) {
     animal.forEach((value, i) => {
@@ -108,7 +110,7 @@ function checkEx(ele) {
   ele.setAttribute("disabled", "disabled");
 }
 
-const pickWord = pickRandomWord();
+console.log(pickWord);
 function checkAnswer() {
   let cnt = 0;
   let maxcnt = 7;
@@ -117,9 +119,7 @@ function checkAnswer() {
   btns.forEach((ele) => {
     ele.addEventListener("click", (e) => {
       if (cnt < maxcnt) {
-        cnt++;
         const clickLetter = e.target.textContent;
-        console.log(pickWord.includes(clickLetter));
         if (pickWord.includes(clickLetter)) {
           checkCircle(ele);
           correctCnt += pickWord.split(clickLetter).length - 1;
@@ -127,9 +127,12 @@ function checkAnswer() {
             console.log("성공~!");
             gameResult(true);
             quizWord.classList.remove("off");
+            isbodySafe();
           }
         } else {
+          cnt++;
           checkEx(ele);
+          printBodies(cnt);
         }
 
         if (cnt === maxcnt) {
@@ -137,6 +140,7 @@ function checkAnswer() {
             console.log("실패!");
             gameResult(false);
             quizWord.classList.remove("off");
+            head.classList.add("failed");
           }
         }
         checkChance(cnt, maxcnt);
@@ -156,8 +160,53 @@ checkAnswer();
 const resultText = document.querySelector("#correct > p");
 function gameResult(isSuccess) {
   if (isSuccess) {
-    resultText.innerText = `단어를 맞췄습니다!`;
+    resultText.innerText = `살렸습니다!`;
   } else {
-    resultText.innerText = `틀렸네용~`;
+    resultText.innerText = `꽥`;
+    resultText.style.color = "red";
   }
+}
+
+const rope = document.querySelector(".rope");
+const head = document.querySelector(".head");
+const body = document.querySelector(".body");
+const leftArm = document.querySelector(".left-arm");
+const rightArm = document.querySelector(".right-arm");
+const leftLeg = document.querySelector(".left-leg");
+const rightLeg = document.querySelector(".right-leg");
+
+const bodiesArr = [head, body, leftArm, rightArm, leftLeg, rightLeg];
+
+function printBodies(cnt) {
+  switch (cnt) {
+    case 1:
+      rope.classList.add("on");
+      break;
+    case 2:
+      head.classList.add("on");
+      break;
+    case 3:
+      body.classList.add("on");
+      break;
+    case 4:
+      leftArm.classList.add("on");
+      break;
+    case 5:
+      rightArm.classList.add("on");
+      break;
+    case 6:
+      leftLeg.classList.add("on");
+      break;
+    case 7:
+      rightLeg.classList.add("on");
+      break;
+  }
+}
+
+const bodies = document.querySelector(".bodies");
+function isbodySafe() {
+  bodies.classList.add("safe");
+  bodiesArr.forEach((ele) => {
+    ele.classList.add("on");
+  });
 }

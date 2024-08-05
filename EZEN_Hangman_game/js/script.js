@@ -22,8 +22,11 @@ const randomTitle = Math.floor(Math.random() * title.length);
 const animalRandom = Math.floor(Math.random() * animal.length);
 const fishRandom = Math.floor(Math.random() * fish.length);
 const bugRandom = Math.floor(Math.random() * bug.length);
+const wordWrap = document.getElementById("quiz-word");
 
 const quizTitle = document.querySelector(".title");
+const rightAnswer = document.querySelector(".right-answer");
+const btns = document.querySelectorAll("#alphabet-wrap > button");
 
 function pickRandomTitle() {
   title.forEach((value, i) => {
@@ -35,58 +38,99 @@ function pickRandomTitle() {
 
 pickRandomTitle();
 
-const quizWord = document.querySelector(".text");
-const pickWord = pickRandomWord();
-
+let pickword;
 function pickRandomWord() {
   if (randomTitle == 0) {
-    animal.forEach((value, i) => {
-      if (animalRandom == i) {
-        animalWord = quizWord.innerText = value;
-      }
-    });
-    return animalWord;
+    return (pickword = animal[animalRandom]);
   } else if (randomTitle == 1) {
-    fish.forEach((value, i) => {
-      if (fishRandom == i) {
-        fishWord = quizWord.innerText = value;
-      }
-    });
-    return fishWord;
+    return (pickword = fish[fishRandom]);
   } else {
-    bug.forEach((value, i) => {
-      if (bugRandom == i) {
-        bugWord = quizWord.innerText = value;
-      }
-    });
-    return bugWord;
+    return (pickword = bug[bugRandom]);
   }
 }
 
-pickRandomWord();
+const divideWrap = document.querySelector(".divide-wrap");
+// function divideWord(clickLetter) {
+//   if (!pickword) {
+//     console.log("pickword2에 결과가 없다");
+//     return;
+//   }
 
-const wordWrap = document.getElementById("quiz-word");
+//   pickword = pickRandomWord();
+
+//   let result = [];
+//   for (let i = 0; i < pickword.length; ++i) {
+//     let divideChar = pickword.charAt(i);
+//     result.push(divideChar);
+
+//     if (clickLetter == result[i]) {
+//       const newP = document.createElement("p");
+//       newP.classList.add("text" + i);
+//       newP.textContent = result[i];
+//       console.log(result[i]);
+//       divideWrap.appendChild(newP);
+//     }
+//   }
+// }
+
+function showCorrectWord(clickLetter) {
+  if (!pickword) {
+    console.log("pickword2에 결과가 없다");
+    return;
+  }
+
+  pickword = pickRandomWord();
+
+  let result = [];
+  for (let i = 0; i < pickword.length; ++i) {
+    let divideChar = pickword.charAt(i);
+    result.push(divideChar);
+
+    const letterElement = document.querySelector(".text" + i);
+
+    if (clickLetter == result[i]) {
+      letterElement.textContent = result[i];
+    }
+  }
+}
+
+pickword = pickRandomWord();
+console.log("선택단어: ", pickword);
 
 function paintUnderline() {
-  const strLength = pickRandomWord().length;
-  const underLineWrap = document.createElement("div");
-  underLineWrap.classList.add("underline-wrap");
+  for (let i = 0; i < pickword.length; ++i) {
+    const underLineWrap = document.createElement("div");
+    underLineWrap.classList.add("underline-wrap");
 
-  for (let i = 0; i < strLength; ++i) {
+    const newP = document.createElement("p");
+    newP.classList.add("text" + i);
+
     const underLine = document.createElement("img");
     underLine.classList.add("underline");
     underLine.setAttribute("src", "./imgs/underline.svg");
     underLine.setAttribute("alt", "밑줄");
 
+    underLineWrap.appendChild(newP);
     underLineWrap.appendChild(underLine);
+    divideWrap.appendChild(underLineWrap);
   }
-
-  wordWrap.appendChild(underLineWrap);
 }
 
 paintUnderline();
 
-const btns = document.querySelectorAll("#alphabet-wrap > button");
+const bodies = document.querySelector(".bodies");
+function isbodySafe() {
+  bodies.classList.add("safe");
+  bodiesArr.forEach((ele) => {
+    ele.classList.add("on");
+  });
+}
+
+function disableAllButtons() {
+  btns.forEach((btn) => {
+    btn.disabled = true;
+  });
+}
 
 function checkCircle(ele) {
   const img = document.createElement("img");
@@ -110,7 +154,6 @@ function checkEx(ele) {
   ele.setAttribute("disabled", "disabled");
 }
 
-console.log(pickWord);
 function checkAnswer() {
   let cnt = 0;
   let maxcnt = 7;
@@ -120,14 +163,15 @@ function checkAnswer() {
     ele.addEventListener("click", (e) => {
       if (cnt < maxcnt) {
         const clickLetter = e.target.textContent;
-        if (pickWord.includes(clickLetter)) {
+        if (pickword.includes(clickLetter)) {
           checkCircle(ele);
-          correctCnt += pickWord.split(clickLetter).length - 1;
-          if (correctCnt === pickWord.length) {
+          showCorrectWord(clickLetter);
+          correctCnt += pickword.split(clickLetter).length - 1;
+          if (correctCnt === pickword.length) {
             console.log("성공~!");
             gameResult(true);
-            quizWord.classList.remove("off");
             isbodySafe();
+            disableAllButtons();
           }
         } else {
           cnt++;
@@ -136,11 +180,11 @@ function checkAnswer() {
         }
 
         if (cnt === maxcnt) {
-          if (correctCnt < pickWord.length) {
+          if (correctCnt < pickword.length) {
             console.log("실패!");
             gameResult(false);
-            quizWord.classList.remove("off");
             head.classList.add("failed");
+            disableAllButtons();
           }
         }
         checkChance(cnt, maxcnt);
@@ -164,6 +208,8 @@ function gameResult(isSuccess) {
   } else {
     resultText.innerText = `꽥`;
     resultText.style.color = "red";
+    rightAnswer.classList.remove("off");
+    rightAnswer.innerText = `정답은 ${pickword} 입니다`;
   }
 }
 
@@ -203,10 +249,7 @@ function printBodies(cnt) {
   }
 }
 
-const bodies = document.querySelector(".bodies");
-function isbodySafe() {
-  bodies.classList.add("safe");
-  bodiesArr.forEach((ele) => {
-    ele.classList.add("on");
-  });
-}
+// function startGame() {
+//   pickRandomTitle();
+
+// }

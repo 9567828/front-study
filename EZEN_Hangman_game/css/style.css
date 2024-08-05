@@ -45,7 +45,7 @@ header h3 {
 }
 
 #img-wrap .svg-wrap .head.failed {
-  left: -2rem;
+  left: -1rem;
 }
 
 #img-wrap .svg-wrap .body {
@@ -93,7 +93,8 @@ header h3 {
 }
 
 #quiz-title .title,
-#quiz-word .text {
+#quiz-word .right-answer,
+#quiz-word .underline-wrap > p {
   font-family: "Margarine", sans-serif;
   font-size: 5rem;
 }
@@ -105,24 +106,20 @@ header h3 {
   font-size: 2rem;
 }
 
-#quiz-word .text {
-  padding-left: 2.5rem;
-  letter-spacing: 20px;
-}
-
-#quiz-word .text.off {
-  display: none;
-}
-
-#quiz-word .underline-wrap {
-  margin-top: 1rem;
+#quiz-word .divide-wrap {
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   gap: 1rem;
 }
 
 #quiz-word .underline {
   width: 3.5rem;
+}
+
+#quiz-word .underline-wrap > p {
+  margin-bottom: 1rem;
 }
 
 #correct {

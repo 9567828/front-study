@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/9567828/wetube-reloade#readme",
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

@@ -6,7 +6,7 @@ const globalRouter = express.Router();
 
 globalRouter.get("/", trending);
 globalRouter.get("/join", join);
-globalRouter.get("/login", login); // function과 url 이름이 같을 필요가 없다
+globalRouter.get("/login", login); // function과 url 이름이 같을 필요는 없다
 globalRouter.get("/search", search);
 
 export default globalRouter;

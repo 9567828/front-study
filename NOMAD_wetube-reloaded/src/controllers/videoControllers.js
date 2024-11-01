@@ -1,6 +1,68 @@
-export const trending = (req, res) => res.render("home", { pageTitle: "home" });
-export const see = (req, res) => res.render("watch");
-export const edit = (req, res) => res.render("edit");
-export const search = (req, res) => res.send("search");
-export const upload = (req, res) => res.send("upload");
-export const deleteVideo = (req, res) => res.send("delete Video");
+let videos = [
+  {
+    title: "First Video",
+    rating: 5,
+    comments: 2,
+    createdAt: "2 minutes ago",
+    views: 1,
+    id: 1,
+  },
+  {
+    title: "Secon Video",
+    rating: 5,
+    comments: 2,
+    createdAt: "2 minutes ago",
+    views: 59,
+    id: 2,
+  },
+  {
+    title: "Third Video",
+    rating: 5,
+    comments: 2,
+    createdAt: "2 minutes ago",
+    views: 59,
+    id: 3,
+  },
+];
+
+export const trending = (req, res) => {
+  return res.render("home", { pageTitle: "home", videos });
+};
+export const watch = (req, res) => {
+  // ES6 문법 const id = req.params.id 와 같다
+  const { id } = req.params;
+  const video = videos[id - 1];
+  return res.render("watch", { pageTitle: `Watching ${video.title}`, video });
+};
+export const getEdit = (req, res) => {
+  const { id } = req.params;
+  const video = videos[id - 1];
+
+  return res.render("edit", { pageTitle: `Editing: ${video.title}`, video });
+};
+export const postEdit = (req, res) => {
+  const { id } = req.params;
+  const { title } = req.body;
+  videos[id - 1].title = title;
+  return res.redirect(`/videos/${id}`);
+};
+
+export const getUpload = (req, res) => {
+  return res.render("upload", { pageTitle: "upload video" });
+};
+
+export const postUpload = (req, res) => {
+  // input에 입력한 값을 얻기 위해서 boyd를 사용한다!! 명심!
+  const { title } = req.body;
+  const newVideo = {
+    title,
+    rating: 0,
+    comments: 0,
+    createdAt: "just Now",
+    views: 0,
+    id: videos.length + 1,
+  };
+
+  videos.push(newVideo);
+  return res.redirect("/");
+};

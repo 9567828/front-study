@@ -10,6 +10,11 @@ const logger = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
+// app.use((req, res, next) => {
+//   console.log(req.headers); // 요청 헤더 확인
+//   next();
+// });
+
 app.use(express.urlencoded({ extended: true }));
 app.use("/", rootRouter);
 app.use("/users", userRouter);

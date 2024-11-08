@@ -15,6 +15,7 @@ export const postJoin = async (req, res) => {
   });
   return res.redirect("/login");
 };
+
 export const login = (req, res) => res.send("login");
 export const edit = (req, res) => res.send("edit");
 export const remove = (req, res) => res.send("remove");

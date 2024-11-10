@@ -1,3 +1,4 @@
+import "dotenv/config";
 // db 연결 (파일 자체를 연결)
 import "./db";
 

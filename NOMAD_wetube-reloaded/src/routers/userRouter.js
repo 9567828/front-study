@@ -1,14 +1,14 @@
 import express from "express";
-import { edit, remove, logout, see, userProfile, startGithubLogin, finishGithubLogin } from "../controllers/userControllers";
+import { edit, logout, see, startGithubLogin, finishGithubLogin, startKakaoLogin, finishKakaoLogin } from "../controllers/userControllers";
 
 const userRouter = express.Router();
 
-userRouter.get("/", userProfile);
-userRouter.get("/logout", logout);
-userRouter.get("/edit", edit);
-userRouter.get("/remove", remove);
 userRouter.get("/github/start", startGithubLogin);
 userRouter.get("/github/finish", finishGithubLogin);
+userRouter.get("/kakao/start", startKakaoLogin);
+userRouter.get("/kakao/finish", finishKakaoLogin);
+userRouter.get("/logout", logout);
+userRouter.get("/edit", edit);
 userRouter.get("/:id", see);
 
 export default userRouter;

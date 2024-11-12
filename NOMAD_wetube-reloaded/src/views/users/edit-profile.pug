@@ -1,0 +1,18 @@
+extends ../base
+
+block content
+  h4 #{loggedInUser.name}의 profile
+  if errorName
+    p= errorName
+  if errorMail
+    p= errorMail
+  form(method="POST")
+    input(name="name" type="text" placeholder="이름입력" required value=loggedInUser.name)
+    input(name="email" type="text" placeholder="이메일입력" required value=loggedInUser.email)
+    input(name="username" type="text" placeholder="아이디입력" required value=loggedInUser.username)
+    input(name="location" type="text" placeholder="주소입력" required value=loggedInUser.location)
+    input(type="submit", value="프로필수정")
+    if !loggedInUser.socialOnly
+      hr
+      //- /users/chang~~로 알아서 넘어간다
+      a(href="change-password") 비밀번호 변경하기 &rarr;

@@ -8,7 +8,7 @@ const setUserSession = (req, user) => {
 };
 
 export const getJoin = (req, res) => {
-  return res.render("join", { pageTitle: "Join" });
+  return res.render("users/join", { pageTitle: "Join" });
 };
 
 export const postJoin = async (req, res) => {
@@ -16,12 +16,12 @@ export const postJoin = async (req, res) => {
   const pageTitle = "Join";
 
   if (password !== password2) {
-    return res.status(400).render("join", { pageTitle, errorMessage: "비밀번호가 일치 하지 않습니다" });
+    return res.status(400).render("users/join", { pageTitle, errorMessage: "비밀번호가 일치 하지 않습니다" });
   }
 
   const exists = await userModel.exists({ $or: [{ username }, { email }] });
   if (exists) {
-    return res.render("join", { pageTitle, errorMessage: "이미 있는 username 또는 email입니다" });
+    return res.render("users/join", { pageTitle, errorMessage: "이미 있는 username 또는 email입니다" });
   }
   try {
     await userModel.create({
@@ -32,24 +32,24 @@ export const postJoin = async (req, res) => {
       location,
     });
   } catch (error) {
-    return res.render("join", { pageTitle, errorMessage: error._message });
+    return res.render("users/join", { pageTitle, errorMessage: error._message });
   }
   return res.redirect("/login");
 };
 
-export const getLogin = (req, res) => res.render("login", { pageTitle: "login" });
+export const getLogin = (req, res) => res.render("users/login", { pageTitle: "login" });
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "login";
 
   const user = await userModel.findOne({ username, socialOnly: false });
   if (!user) {
-    return res.status(400).render("login", { pageTitle, errorMessage: "존재하지 않는 아이디입니다." });
+    return res.status(400).render("users/login", { pageTitle, errorMessage: "존재하지 않는 아이디입니다." });
   }
 
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
-    return res.status(400).render("login", { pageTitle, errorMessage: "비밀번호가 틀렸습니다." });
+    return res.status(400).render("users/login", { pageTitle, errorMessage: "비밀번호가 틀렸습니다." });
   }
 
   setUserSession(req, user);
@@ -108,14 +108,14 @@ export const finishGithubLogin = async (req, res) => {
       return res.redirect("/login");
     }
     let user = await userModel.findOne({ $or: [{ email: emailObj.email }, { username: userData.login }] });
-    if (!user) {
-      // const username = user.username === userData.login ? `${userData.login}_${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, "0")}` : userData.login;
+    if (!user || (user.username === userData.login && user.email !== userData.email)) {
+      const username = user.username === userData.login ? `${userData.login}_${Date.now()}` : userData.login;
       user = await userModel.create({
         avatarUrl: userData.avatarUrl,
         name: userData.name ? userData.name : "이름없음",
         socialOnly: true,
         email: emailObj.email,
-        username: userData.login,
+        username: username,
         password: null,
         location: userData.location,
       });
@@ -123,24 +123,6 @@ export const finishGithubLogin = async (req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
     res.redirect("/");
-    // if (existingUser.email && existingUser.username !== userData.login) {
-    //   req.session.loggedIn = true;
-    //   req.session.user = existingUser;
-    //   res.redirect("/");
-    // } else {
-    //   const username = existingUser.username === userData.login ? `${userData.login}_${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, "0")}` : userData.login;
-    //   const user = await userModel.create({
-    //     name: userData.name ? userData.name : "이름없음",
-    //     socialOnly: true,
-    //     email: emailObj.email,
-    //     username: username,
-    //     password: null,
-    //     location: userData.location,
-    //   });
-    //   req.session.loggedIn = true;
-    //   req.session.user = user;
-    //   res.redirect("/");
-    // }
   } else {
     // render를 사용해서 오류 메시지를 템플릿에 보내는 방법을 사용하지 않고
     // redirect를 통해서 알림을 보내도록 할 것이다.
@@ -185,6 +167,91 @@ export const logout = (req, res) => {
   req.session.destroy();
   return res.redirect("/");
 };
-export const edit = (req, res) => res.send("edit");
+export const getEdit = (req, res) => {
+  return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
+};
+export const postEdit = async (req, res) => {
+  // 오브젝트로 넣은 문법과 아래와 같다 이것이 ES6
+  // const { user } = req.session.user;
+  // const { name, email, username, location } = req.body;
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, email, username, location },
+  } = req;
+  const pageTitle = "Edit Profile";
+
+  const user = await userModel.findById(_id);
+
+  let errorName = "";
+  let errorMail = "";
+
+  if (user.username !== username) {
+    const existingUsername = await userModel.findOne({ username });
+    if (existingUsername) {
+      errorName = "이미 있는 username입니다.";
+    }
+  }
+
+  if (user.email !== email) {
+    const existingEmail = await userModel.findOne({ email });
+    if (existingEmail) {
+      errorMail = "이미 있는 email입니다.";
+    }
+  }
+
+  if (errorName || errorMail) {
+    return res.status(400).render("users/edit-profile", { pageTitle, errorName, errorMail });
+  }
+
+  try {
+    const updateUser = await userModel.findByIdAndUpdate(
+      _id,
+      {
+        name,
+        email,
+        username,
+        location,
+      },
+      { returnDocument: "after" }
+    );
+    req.session.user = updateUser;
+  } catch (error) {
+    return res.render("users/edit-profile", { pageTitle, errorMessage: error._message });
+  }
+  return res.redirect("edit");
+};
+
+export const getChangePassword = (req, res) => {
+  if (req.session.user.socialOnly) {
+    return res.redirect("/");
+  }
+  res.render("users/change-password", { pageTitle: "Change Password" });
+};
+
+export const postChangePassword = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { oldPassword, newPassword, newPasswordConfirm },
+  } = req;
+
+  const user = await userModel.findById(_id);
+  const ok = await bcrypt.compare(oldPassword, user.password);
+  if (!ok) {
+    return res.status(400).render("users/change-password", { pageTitle: "Change Password", errorMessage: "기존 비밀번호가 틀렸다" });
+  }
+
+  if (newPassword !== newPasswordConfirm) {
+    return res.status(400).render("users/change-password", { pageTitle: "Change Password", errorMessage: "비밀번호가 일치 하지 않습니다" });
+  }
+
+  user.password = newPassword;
+  await user.save();
+  return res.redirect("/users/logout");
+};
+
 export const see = (req, res) => res.send("see user");
 export const userProfile = (req, res) => res.send("user profile");

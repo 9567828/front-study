@@ -1,4 +1,5 @@
 import videoModel from "../model/video";
+import userModel from "../model/user";
 
 export const home = async (req, res) => {
   const videos = await videoModel.find({}).sort({ createdAt: "desc" });
@@ -8,7 +9,8 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   // ES6 문법 const id = req.params.id 와 같다
   const { id } = req.params;
-  const video = await videoModel.findById(id);
+  const video = await videoModel.findById(id).populate("owner");
+  console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "video not found" });
   }
@@ -16,20 +18,38 @@ export const watch = async (req, res) => {
 };
 
 export const getEdit = async (req, res) => {
-  const { id } = req.params;
+  const {
+    params: { id },
+    session: {
+      user: { _id },
+    },
+  } = req;
   const video = await videoModel.findById(id);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "video not found" });
+  }
+  if (!video.owner.equals(_id)) {
+    return res.status(403).redirect("/");
   }
   return res.render("videos/edit", { pageTitle: `Editing: ${video.title}`, video });
 };
 
 export const postEdit = async (req, res) => {
-  const { id } = req.params;
-  const { title, description, hashtags } = req.body;
+  const {
+    params: { id },
+    session: {
+      user: { _id },
+    },
+    body: { title, description, hashtags },
+  } = req;
+  // const { id } = req.params;
+  // const { title, description, hashtags } = req.body;
   const video = await videoModel.exists({ _id: id });
   if (!video) {
     return res.render("404", { pageTitle: "video not found" });
+  }
+  if (!video.owner.equals(_id)) {
+    return res.status(403).redirect("/");
   }
   await videoModel.findByIdAndUpdate(id, {
     title,
@@ -44,36 +64,62 @@ export const getUpload = (req, res) => {
 };
 
 export const postUpload = async (req, res) => {
-  // input에 입력한 값을 얻기 위해서 boyd를 사용한다!! 명심!
-  const { title, description, hashtags } = req.body;
+  const {
+    session: {
+      user: { _id },
+    },
+    file: { path: fileUrl },
+    body: { title, description, hashtags },
+  } = req;
+  // const {
+  //   user: { _id },
+  // } = req.session;
+  // const { path: fileUrl } = req.file;
+  // const { title, description, hashtags } = req.body;
   try {
-    await videoModel.create({
+    const newVideo = await videoModel.create({
       title,
       description,
+      owner: _id,
+      fileUrl,
       hashtags: videoModel.formatHashtags(hashtags),
     });
+    const user = await userModel.findById(_id);
+    user.videos.push(newVideo._id);
+    user.save();
   } catch (error) {
+    console.log(error);
     return res.status(400).render("videos/upload", { pageTitle: "upload video", errorMessage: error._message });
   }
   return res.redirect("/");
 };
 
 export const deleteVideo = async (req, res) => {
-  const { id } = req.params;
+  const {
+    params: { id },
+    session: {
+      user: { _id },
+    },
+  } = req;
+
+  const video = await videoModel.findById(id);
+  if (!video) {
+    return res.status(404).render("404", { pageTitle: "Video not found" });
+  }
+  if (!video.owner.equals(_id)) {
+    return res.status(403).redirect("/");
+  }
+
   await videoModel.findByIdAndDelete(id);
+  await userModel.findByIdAndUpdate(
+    _id,
+    {
+      $pull: { videos: id },
+    },
+    { returnDocument: "after" }
+  );
   return res.redirect("/");
 };
-
-// export const search = async (req, res) => {
-//   const { keyword } = req.query;
-//   if (keyword) {
-//     const videos = await videoModel.find({
-//       title: keyword,
-//     });
-//     return res.render("search", { pageTitle: "search video", videos });
-//   }
-//   return res.render("search", { pageTitle: "search video" });
-// };
 
 export const search = async (req, res) => {
   const { keyword } = req.query;

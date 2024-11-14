@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const videoSchema = new mongoose.Schema({
   // {type: String} 과 같다 String 만 적은 것은 shortcut
   title: { type: String, required: true, trim: true, maxLength: 80 },
+  fileUrl: { type: String, required: true },
   description: { type: String, required: true, trim: true, minLength: 20 },
   // date.now에 괄호가 빠진 이유는 이 스키마를 실행할 때만 실행하기 위해서이다!
   createdAt: { type: Date, required: true, default: Date.now },
@@ -11,6 +12,7 @@ const videoSchema = new mongoose.Schema({
     views: { type: Number, default: 0, required: true },
     rating: { type: Number, default: 0, required: true },
   },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
 videoSchema.static("formatHashtags", function (hashtags) {

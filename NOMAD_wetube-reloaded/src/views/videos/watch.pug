@@ -1,13 +1,18 @@
 extends ../base
 
 block content
+  video(src=`/${video.fileUrl}`, controls)
   div
     p=video.description
     small=video.createdAt
+    br
+    small 게시자&nbsp;
+      a(href=`/users/${video.owner._id}`) #{video.owner.name}
     ul
       p hashtags
       each hashtag in video.hashtags
         li=hashtag
-  a(href=`${video.id}/edit`) Edit Video &rarr;
-  br
-  a(href=`${video.id}/delete`) delete Video &rarr;
+  if video.owner._id.equals(loggedInUser._id)
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    br
+    a(href=`${video.id}/delete`) delete Video &rarr;

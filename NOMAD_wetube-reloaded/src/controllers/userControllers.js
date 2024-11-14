@@ -1,5 +1,5 @@
-import { response } from "express";
 import userModel from "../model/user";
+import videoModel from "../model/video";
 import bcrypt from "bcrypt";
 
 const setUserSession = (req, user) => {
@@ -107,9 +107,15 @@ export const finishGithubLogin = async (req, res) => {
     if (!emailObj) {
       return res.redirect("/login");
     }
-    let user = await userModel.findOne({ $or: [{ email: emailObj.email }, { username: userData.login }] });
-    if (!user || (user.username === userData.login && user.email !== userData.email)) {
-      const username = user.username === userData.login ? `${userData.login}_${Date.now()}` : userData.login;
+    let user = await userModel.findOne({ email: emailObj.email });
+    if (!user) {
+      let username = userData.login;
+
+      const existingUsername = await userModel.findOne({ username: userData.login });
+      if (existingUsername) {
+        username = `${userData.login}_${Date.now()}`;
+      }
+
       user = await userModel.create({
         avatarUrl: userData.avatarUrl,
         name: userData.name ? userData.name : "이름없음",
@@ -171,16 +177,17 @@ export const getEdit = (req, res) => {
   return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
 };
 export const postEdit = async (req, res) => {
+  const pageTitle = "Edit Profile";
   // 오브젝트로 넣은 문법과 아래와 같다 이것이 ES6
   // const { user } = req.session.user;
   // const { name, email, username, location } = req.body;
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
     body: { name, email, username, location },
+    file,
   } = req;
-  const pageTitle = "Edit Profile";
 
   const user = await userModel.findById(_id);
 
@@ -209,6 +216,7 @@ export const postEdit = async (req, res) => {
     const updateUser = await userModel.findByIdAndUpdate(
       _id,
       {
+        avatarUrl: file ? file.path : avatarUrl,
         name,
         email,
         username,
@@ -253,5 +261,12 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/users/logout");
 };
 
-export const see = (req, res) => res.send("see user");
-export const userProfile = (req, res) => res.send("user profile");
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await userModel.findById(id).populate("videos");
+  console.log(user);
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "사용자가 없습니다." });
+  }
+  return res.render("users/profile", { pageTitle: `${user.name} profile`, user });
+};

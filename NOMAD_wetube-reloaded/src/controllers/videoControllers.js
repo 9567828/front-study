@@ -1,9 +1,8 @@
 import videoModel from "../model/video";
 import userModel from "../model/user";
-import fs from "fs";
 
 export const home = async (req, res) => {
-  const videos = await videoModel.find({}).sort({ createdAt: "desc" });
+  const videos = await videoModel.find({}).sort({ createdAt: "desc" }).populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 
@@ -135,13 +134,15 @@ export const search = async (req, res) => {
   const { keyword } = req.query;
   let videos = [];
   if (keyword) {
-    videos = await videoModel.find({
-      title: {
-        // i는 대소문자를 구분없이 검색하게 해주는 것이다.
-        // RegExp는 contains와 같다 포함하는 단어를 찾아주는 것
-        $regex: new RegExp(keyword, "i"),
-      },
-    });
+    videos = await videoModel
+      .find({
+        title: {
+          // i는 대소문자를 구분없이 검색하게 해주는 것이다.
+          // RegExp는 contains와 같다 포함하는 단어를 찾아주는 것
+          $regex: new RegExp(keyword, "i"),
+        },
+      })
+      .populate("owner");
   }
   return res.render("videos/search", { pageTitle: "search video", videos });
 };

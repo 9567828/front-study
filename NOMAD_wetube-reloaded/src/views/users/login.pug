@@ -7,11 +7,7 @@ block content
     input(name="username" type="text" placeholder="아이디입력" required)
     input(name="password" type="password" placeholder="비번입력" required)
     input(type="submit", value="login")
-    br
-    a(href="/users/github/start") 깃헙로그인 &rarr;
-    br
-    a(href="/users/kakao/start") 카카오로그인 &rarr;
-  hr
-  div
+    include ../partials/social-login
+  div.auth-switch
     span 계정이 없나요? 
-    a(href="/join") 가입하기 &rarr; 
+    a(href="/join") 가입하기 &rarr;

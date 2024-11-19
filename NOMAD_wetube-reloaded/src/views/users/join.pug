@@ -11,7 +11,7 @@ block content
     input(name="password2" type="password" placeholder="비번확인" required)
     input(name="location" type="text" placeholder="주소입력" required)
     input(type="submit", value="join")
-  hr
-  div
+    include ../partials/social-login
+  div.auth-switch
     span 이미 계정이 있나요? 
     a(href="/login") 로그인하러가기 &rarr; 

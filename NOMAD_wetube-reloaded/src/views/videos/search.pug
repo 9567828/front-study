@@ -2,10 +2,13 @@ extends ../base
 include ../mixins/video
 
 block content
-  form(method="GET")
+  form(method="GET" class="search-form")
     input(type="text", name="keyword" placeholder="search by title")
-    input(type="submit", value="search")
+    button
+      i.fas.fa-search
   
-  div
+  div.video-grid
     each video in videos
       +video(video)
+    else
+      span.empty-message 찾는 영상이 없습니다.

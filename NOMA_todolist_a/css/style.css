@@ -209,6 +209,14 @@ button[disabled] {
   margin-top: 4px;
 }
 
+.todo-right {
+  display: flex;
+}
+
+.edit-warp {
+  display: flex;
+}
+
 /* quote */
 #quote {
   display: flex;

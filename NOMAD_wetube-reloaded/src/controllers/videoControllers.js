@@ -1,5 +1,6 @@
 import videoModel from "../model/video";
 import userModel from "../model/user";
+import fs from "fs";
 
 export const home = async (req, res) => {
   const videos = await videoModel.find({}).sort({ createdAt: "desc" });
@@ -10,7 +11,6 @@ export const watch = async (req, res) => {
   // ES6 문법 const id = req.params.id 와 같다
   const { id } = req.params;
   const video = await videoModel.findById(id).populate("owner");
-  console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "video not found" });
   }
@@ -40,22 +40,34 @@ export const postEdit = async (req, res) => {
     session: {
       user: { _id },
     },
+    file,
     body: { title, description, hashtags },
   } = req;
-  // const { id } = req.params;
-  // const { title, description, hashtags } = req.body;
-  const video = await videoModel.exists({ _id: id });
+
+  const video = await videoModel.findById(id);
   if (!video) {
     return res.render("404", { pageTitle: "video not found" });
   }
+
   if (!video.owner.equals(_id)) {
     return res.status(403).redirect("/");
   }
-  await videoModel.findByIdAndUpdate(id, {
-    title,
-    description,
-    hashtags: videoModel.formatHashtags(hashtags),
-  });
+
+  try {
+    await videoModel.findByIdAndUpdate(
+      id,
+      {
+        fileUrl: file ? file.path : video.fileUrl,
+        title,
+        description,
+        hashtags: videoModel.formatHashtags(hashtags),
+      },
+      { new: true }
+    );
+  } catch (error) {
+    console.log(error);
+    return res.status(404).render("videos/edit", { pageTitle: `Editing: ${video.title}`, errorMessge: "비디오 수정에 실패 했습니다." });
+  }
   return res.redirect(`/videos/${id}`);
 };
 
@@ -71,11 +83,7 @@ export const postUpload = async (req, res) => {
     file: { path: fileUrl },
     body: { title, description, hashtags },
   } = req;
-  // const {
-  //   user: { _id },
-  // } = req.session;
-  // const { path: fileUrl } = req.file;
-  // const { title, description, hashtags } = req.body;
+
   try {
     const newVideo = await videoModel.create({
       title,
@@ -106,6 +114,7 @@ export const deleteVideo = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
+
   if (!video.owner.equals(_id)) {
     return res.status(403).redirect("/");
   }
@@ -118,6 +127,7 @@ export const deleteVideo = async (req, res) => {
     },
     { returnDocument: "after" }
   );
+
   return res.redirect("/");
 };
 
@@ -132,7 +142,6 @@ export const search = async (req, res) => {
         $regex: new RegExp(keyword, "i"),
       },
     });
-    console.log(videos);
   }
   return res.render("videos/search", { pageTitle: "search video", videos });
 };

@@ -1,83 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="referrer" content="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
 
-  <title>Todo-login</title>
+    <title>Todo-login</title>
 
-  <!-- 프리텐다드 -->
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <!-- reset css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
-  <!-- fontawsome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- css -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/reset.css" />
-</head>
-<body>
-  <div id="container">
-    <div class="inner">
-      <!-- clock -->
-      <h1 id="clock"></h1>
+    <!-- 프리텐다드 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <!-- reset css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" />
+    <!-- fontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="inner">
+        <!-- clock -->
+        <h1 id="clock"></h1>
 
-      <!-- greeting -->
-      <h1 id="greeting" class="hidden"></h1>
+        <!-- greeting -->
+        <h1 id="greeting" class="hidden"></h1>
 
-      <!-- weather -->
-      <div id="weather">
-        <div class="loca">
-          <span class="fa-solid fa-location-arrow"></span> <!-- 위치아이콘 -->
-          <span></span> <!-- 시티명 -->
-        </div>
-        <div class="weather_wrap">
-          <img src="" alt="" /> <!-- 날씨아이콘 -->
-          <div class="temp_wrap">
-            <span></span> <!-- 기온 -->
-            <span></span> <!-- 날씨상태 -->
+        <!-- weather -->
+        <div id="weather">
+          <div class="loca">
+            <span class="fa-solid fa-location-arrow"></span>
+            <!-- 위치아이콘 -->
+            <span></span>
+            <!-- 시티명 -->
           </div>
-        </div>
-      </div>
-
-      <!-- login form -->
-      <form id="login_form" class="hidden">
-        <div class="login_box">
-          <input required maxlength="15" type="text" placeholder="이름을 입력해주세요">
-          <button id="btn" disabled>로그인</button>
-        </div>
-      </form>
-
-      <!-- todo form -->
-      <div id="todo" class="hidden">
-        <div class="todo_wrap">
-          <form id="todo_form">
-            <div class="todo_box">
-              <input type="text" placeholder="할일을 입력해 주세요" onfocus="this.placeholder=''" onblur="this.placeholder='할일을 입력해 주세요'">
+          <div class="weather_wrap">
+            <img src="" alt="" />
+            <!-- 날씨아이콘 -->
+            <div class="temp_wrap">
+              <span></span>
+              <!-- 기온 -->
+              <span></span>
+              <!-- 날씨상태 -->
             </div>
-          </form>
-          <div class="list_wrap">
-            <ul id="todo_list"></ul>
           </div>
         </div>
-      </div>
-      
-      <!-- quote -->
-      <div id="quote">
-        <span></span>
-        <span></span>
+
+        <!-- login form -->
+        <form id="login_form" class="hidden">
+          <div class="login_box">
+            <input required maxlength="15" type="text" placeholder="이름을 입력해주세요" />
+            <button id="btn" disabled>로그인</button>
+          </div>
+        </form>
+
+        <!-- todo form -->
+        <div id="todo" class="hidden">
+          <div class="todo_wrap">
+            <form id="todo_form">
+              <div class="todo_box">
+                <input type="text" placeholder="할일을 입력해 주세요" onfocus="this.placeholder=''" onblur="this.placeholder='할일을 입력해 주세요'" />
+              </div>
+            </form>
+            <div class="list_wrap">
+              <ul id="todo_list"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- quote -->
+        <div id="quote">
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="js/background.js"></script>
-  <script src="js/clock.js"></script>
-  <script src="js/quotes.js"></script>
-  <script src="js/weather.js"></script>
-  <script src="js/greeting.js"></script>
-  <script src="js/todo.js"></script>
-  <script src="js/comp_todo.js"></script>
-
-</body>
+    <script src="js/background.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/quotes.js"></script>
+    <!-- <script src="js/weather.js"></script> -->
+    <script src="js/greeting.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/comp_todo.js"></script>
+  </body>
 </html>

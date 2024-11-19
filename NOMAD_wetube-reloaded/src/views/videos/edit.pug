@@ -2,7 +2,14 @@ extends ../base
 
 block content
   h4 Update video
-  form(method="POST")
+  if errorMessge
+    span= errorMessge
+  form(method="POST" enctype="multipart/form-data")
+    if video.fileUrl
+      video(src=`/${video.fileUrl}` width="330")
+    else
+      p 비디오가 없다
+    input(type="file", name="video" accept="video/*")
     input(type="text" name="title" placeholder="Video Title", value=video.title required maxlenth=80)
     input(type="text" name="description" placeholder="description" value=video.description required minlength=20)
     input(type="text" name="hashtags" placeholder="hashtags separate by comma" value=video.hashtags.join() required)

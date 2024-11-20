@@ -2,7 +2,10 @@ extends ../base
 
 block content
   div.profile-wrap
-    img.avatar(src=`/${loggedInUser.avatarUrl}` alt="프로필사진" width="100" height="100")
+    if !loggedInUser.avatarUrl
+      span 😂
+    else
+      img.avatar(src=`/${loggedInUser.avatarUrl}` alt="프로필사진" width="100" height="100")
   if errorName
     p= errorName
   if errorMail

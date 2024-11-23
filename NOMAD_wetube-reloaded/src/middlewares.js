@@ -42,3 +42,8 @@ export const videoUpload = multer({
     fileSize: 10000000, // 10MB
   },
 });
+
+export const arrowMic = (req, res, next) => {
+  res.set("Permissions-Policy", 'microphone=(self "https://developer.mozilla.org")');
+  next();
+};

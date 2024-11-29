@@ -8,7 +8,10 @@ const totalTime = document.getElementById("total-time");
 const timeLine = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("full-screen");
 const videoContainer = document.getElementById("video-container");
+const videoControls = document.getElementById("video-controls");
 
+let controlsTimeout = null;
+let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
@@ -89,6 +92,36 @@ const handleFullScreen = () => {
   }
 };
 
+const hideControls = () => videoControls.classList.remove("showing");
+
+const handleMouseMove = () => {
+  if (controlsTimeout) {
+    clearTimeout(controlsTimeout);
+    controlsTimeout = null;
+  }
+  if (controlsMovementTimeout) {
+    clearTimeout(controlsMovementTimeout);
+    controlsMovementTimeout = null;
+  }
+  videoControls.classList.add("showing");
+  controlsMovementTimeout = setTimeout(hideControls, 3000);
+};
+
+const handleMouseLeave = () => {
+  controlsTimeout = setTimeout(hideControls, 3000);
+};
+
+const handleClickVideo = () => {
+  handlePlayClick();
+};
+
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, {
+    method: "POST",
+  });
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -96,3 +129,7 @@ video.addEventListener("loadedmetadata", handleLoadedMetaData);
 video.addEventListener("timeupdate", handleTimeUpdate);
 timeLine.addEventListener("input", handleTimeLineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
+video.addEventListener("mousemove", handleMouseMove); // css로 컨트롤바 position으로 video위에 올리면 잘 안된다. videoContainer에 이벤트 걸어야 함
+video.addEventListener("mouseleave", handleMouseLeave);
+video.addEventListener("click", handleClickVideo);
+video.addEventListener("ended", handleEnded);

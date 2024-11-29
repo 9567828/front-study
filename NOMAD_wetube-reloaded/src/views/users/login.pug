@@ -6,7 +6,7 @@ block content
   form(method="POST")
     input(name="username" type="text" placeholder="아이디입력" required)
     input(name="password" type="password" placeholder="비번입력" required)
-    input(type="submit", value="login")
+    input(type="submit", value="login").login-submit
     include ../partials/social-login
   div.auth-switch
     span 계정이 없나요? 

@@ -8,7 +8,8 @@ form {
     border: 1px solid rgba($color: #fff, $alpha: 0.1);
   }
 }
-input:not(input[type="range"]) {
+
+input:not(input[type="range"], input[type="submit"]) {
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
@@ -22,8 +23,11 @@ input:not(input[type="range"]) {
     color: rgba(255, 255, 255, 0.7);
   }
 }
-input[type="submit"],
+
+.login-submit,
 .social-btn {
+  width: 100%;
+  font-size: 16px;
   border-radius: 5px;
   padding: 12px 20px;
   background-color: white;

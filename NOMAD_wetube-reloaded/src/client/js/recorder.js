@@ -10,12 +10,6 @@ const handleStart = async () => {
   } catch (error) {
     console.log(error);
   }
-  // try {
-  //   const devices = await navigator.mediaDevices.enumerateDevices();
-  //   console.log(devices);
-  // } catch (error) {
-  //   console.log(error);
-  // }
 };
 
 startBtn.addEventListener("click", handleStart);

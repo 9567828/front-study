@@ -43,6 +43,7 @@ export const postLogin = async (req, res) => {
   const pageTitle = "login";
 
   const user = await userModel.findOne({ username, socialOnly: false });
+  console.log(user);
   if (!user) {
     return res.status(400).render("users/login", { pageTitle, errorMessage: "존재하지 않는 아이디입니다." });
   }

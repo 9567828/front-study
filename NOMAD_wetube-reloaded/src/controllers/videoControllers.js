@@ -28,6 +28,7 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "video not found" });
   }
   if (!video.owner.equals(_id)) {
+    req.flash("error", "비디오 주인이 아니다");
     return res.status(403).redirect("/");
   }
   return res.render("videos/edit", { pageTitle: `Editing: ${video.title}`, video });
@@ -49,6 +50,7 @@ export const postEdit = async (req, res) => {
   }
 
   if (!video.owner.equals(_id)) {
+    req.flash("error", "비디오 주인이 아니다");
     return res.status(403).redirect("/");
   }
 

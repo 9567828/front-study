@@ -26,10 +26,10 @@ block content
         p hashtags
         each hashtag in video.hashtags
           li=hashtag
-    if video.owner._id.equals(loggedInUser._id)
-      a(href=`${video.id}/edit`) Edit Video &rarr;
-      br
-      a(href=`${video.id}/delete`) delete Video &rarr;
+  if video.owner._id.equals(loggedInUser._id)
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    br
+    a(href=`${video.id}/delete`) delete Video &rarr;
 
 block scripts
   script(src="/static/js/videoPlayer.js")

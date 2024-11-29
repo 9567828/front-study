@@ -172,6 +172,7 @@ export const finishKakaoLogin = async (req, res) => {
 
 export const logout = (req, res) => {
   req.session.destroy();
+  req.flash("info", "안녕히 가슈");
   return res.redirect("/");
 };
 export const getEdit = (req, res) => {
@@ -234,6 +235,7 @@ export const postEdit = async (req, res) => {
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly) {
+    req.flash("error", "소셜 로그인 계정은 비밀번호 변경 불가");
     return res.redirect("/");
   }
   res.render("users/change-password", { pageTitle: "Change Password" });
@@ -259,6 +261,7 @@ export const postChangePassword = async (req, res) => {
 
   user.password = newPassword;
   await user.save();
+  req.flash("info", "비밀번호 변경완료");
   return res.redirect("/users/logout");
 };
 

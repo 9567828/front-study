@@ -15,21 +15,28 @@ block content
         input(type="range", value=0 min="0", step="1")#timeline
       div
         button#full-screen 풀
-  //-
-    div
-      p=video.description
-      small=video.createdAt
-      br
-      small 게시자&nbsp;
-        a(href=`/users/${video.owner._id}`) #{video.owner.name}
-      ul
-        p hashtags
-        each hashtag in video.hashtags
-          li=hashtag
+  div
+    p=video.description
+    small=video.createdAt
+    br
+    small 게시자&nbsp;
+      a(href=`/users/${video.owner._id}`) #{video.owner.name}
+    ul
+      p hashtags
+      each hashtag in video.hashtags
+        li=hashtag
   if video.owner._id.equals(loggedInUser._id)
     a(href=`${video.id}/edit`) Edit Video &rarr;
     br
     a(href=`${video.id}/delete`) delete Video &rarr;
 
+  if loggedIn
+    div.video-comments
+      form.video-comment-form#comment-form
+        textarea(cols="30", rows="10", placeholder="댓글을 입력해주세요")
+        button 댓글추가
+
 block scripts
   script(src="/static/js/videoPlayer.js")
+  if loggedIn
+    script(src="/static/js/commentSection.js")

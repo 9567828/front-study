@@ -11,8 +11,8 @@ html(lang="ko")
       +message("error", messages.error)
     if messages.info
       +message("info", messages.error)
-    //- if messages.success
-    //-   +message("success", messages.error)
+    if messages.success
+      +message("success", messages.error)
     include partials/header
     main
       block content

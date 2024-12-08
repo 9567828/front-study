@@ -5,4 +5,5 @@ mixin video(info)
       span.video-mixin-title=info.title
       div.video-mixin-meta
         span #{info.owner.name || user.username} • 
-        span #{info.meta.views}회
+        span #{info.meta.views}회 • 
+        span 좋아요 #{info.likes.length}

@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
   },
   name: { type: String, required: true },
   location: String,
+  likes: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: "Like" }],
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });

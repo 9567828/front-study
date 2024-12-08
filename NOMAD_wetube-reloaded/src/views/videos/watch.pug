@@ -31,21 +31,31 @@ block content
     a(href=`${video.id}/delete`) delete Video &rarr;
 
   if loggedIn
-    div.video-comments
-      form.video-comment-form#comment-form
-        textarea(cols="30", rows="10", placeholder="댓글을 입력해주세요")
-        button 댓글추가
+    div#video-meta-container
+      div.video-comments
+        form.video-comment-form#comment-form
+          textarea(cols="30", rows="10", placeholder="댓글을 입력해주세요")
+          button 입력
+      div.video-likes
+        if likeUser && likeUser.owner && likeUser.owner.toString() === loggedInUser._id.toString()
+          button.like-btn.on(data-likeid=likeUser._id) 👍
+          span.like-number= video.likes.length || 0
+        else
+          button.like-btn 👍
+          span.like-number= video.likes.length || 0
   div.comment-list
     each comment in video.comments.reverse()
-      div.comment-wrap(data-comId=comment.id)
+      div.comment-wrap(data-comid=comment.id)
         div.left
           span.comment.text 댓: #{comment.text}
           each user in users
             if comment.owner.equals(user._id)
               span.comment.name 작성자: #{user.username}
         if comment.owner.equals(loggedInUser._id) 
-          span.delete-comment ❌
+          a(href=`/api/comment/${comment.id}/delete`) ❌
+          //- button.delete-comment(onclick="handleDeleteComment(event)") ❌
 block scripts
   script(src="/static/js/videoPlayer.js")
   if loggedIn
     script(src="/static/js/commentSection.js")
+    script(src="/static/js/likeSection.js")

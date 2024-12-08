@@ -5,8 +5,8 @@ const delBtn = document.querySelectorAll(".delete-comment");
 const addComment = (text, id, username) => {
   const commentList = document.querySelector(".comment-list");
   const commentWarp = document.createElement("div");
-  commentWarp.dataset.id = id;
   commentWarp.className = "comment-wrap";
+  commentWarp.dataset.comid = id;
   const left = document.createElement("div");
   left.className = "left";
   const newCommentText = document.createElement("span");
@@ -17,10 +17,11 @@ const addComment = (text, id, username) => {
   newCommentWriter.className = "comment";
   newCommentWriter.classList.add("name");
   newCommentWriter.innerText = `작성자: ${username}`;
-  const deleteComment = document.createElement("span");
+  const deleteComment = document.createElement("a");
   deleteComment.classList.add("delete-comment");
   deleteComment.innerText = "❌";
-  deleteComment.id = id;
+  deleteComment.href = `/api/comment/${id}/delete`;
+  // deleteComment.id = id;
 
   left.appendChild(newCommentText);
   left.appendChild(newCommentWriter);
@@ -34,8 +35,6 @@ const handleSubmit = async (e) => {
   const textarea = form.querySelector("textarea");
   const text = textarea.value;
   const videoId = videoContainer.dataset.id;
-  // const getNicname = document.querySelector(".comment.name");
-  // const nickname = getNicname.dataset.nickname;
   if (text === "") {
     return;
   }
@@ -45,29 +44,29 @@ const handleSubmit = async (e) => {
     body: JSON.stringify({ text }),
   });
   if (response.status === 201) {
-    textarea.value = "";
     const { newCommentId, newUsername } = await response.json();
     addComment(text, newCommentId, newUsername);
+    textarea.value = "";
   }
 };
 
-const handleDeleteComment = async (e) => {
-  const videoId = videoContainer.dataset.id;
-  const comId = e.target.parentElement.dataset.comid;
-  const deltarget = e.target.parentElement;
-  const response = await fetch(`/api/videos/${videoId}/comment/delete`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ comId }),
-  });
-  if (response.status === 200) {
-    deltarget.remove();
-  }
-};
+// const handleDeleteComment = async (e) => {
+//   const comId = e.target.parentElement.dataset.comid;
+//   const deltarget = e.target.parentElement;
+//   const response = await fetch(`/api/comment/${comId}/delete`, {
+//     method: "DELETE",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ comId }),
+//   });
+//   console.log(response);
+//   if (response.status === 200) {
+//     deltarget.remove();
+//   }
+// };
 
-delBtn.forEach((btn) => {
-  btn.addEventListener("click", handleDeleteComment);
-});
+// delBtn.forEach((btn) => {
+//   btn.addEventListener("click", handleDeleteComment);
+// });
 
 if (form) {
   form.addEventListener("submit", handleSubmit);

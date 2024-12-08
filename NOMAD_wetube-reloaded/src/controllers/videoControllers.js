@@ -1,5 +1,6 @@
 import videoModel from "../model/video";
 import userModel from "../model/user";
+import commentModel from "../model/comment";
 
 export const home = async (req, res) => {
   const videos = await videoModel.find({}).sort({ createdAt: "desc" }).populate("owner");
@@ -9,11 +10,13 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   // ES6 문법 const id = req.params.id 와 같다
   const { id } = req.params;
-  const video = await videoModel.findById(id).populate("owner");
+  const video = await videoModel.findById(id).populate("owner").populate("comments");
+  const users = await userModel.find().populate("comments");
+
   if (!video) {
     return res.status(404).render("404", { pageTitle: "video not found" });
   }
-  return res.render("videos/watch", { pageTitle: video.title, video });
+  return res.render("videos/watch", { pageTitle: video.title, video, users });
 };
 
 export const getEdit = async (req, res) => {
@@ -162,7 +165,73 @@ export const registerView = async (req, res) => {
 };
 
 export const createComment = async (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
-  res.end();
+  const {
+    params: { id },
+    session: { user },
+    body: { text },
+  } = req;
+
+  const video = await videoModel.findById(id);
+
+  if (!video) {
+    return res.sendStatus(404);
+  }
+
+  const comment = await commentModel.create({
+    text,
+    owner: user._id,
+    video: id,
+  });
+  await videoModel.updateOne(
+    { _id: id }, // 조건을 객체로 전달
+    { $push: { comments: comment._id } }
+  );
+
+  await userModel.updateOne(
+    { _id: user._id }, // 조건을 객체로 전달
+    { $push: { comments: comment._id } }
+  );
+
+  const userinfo = await userModel.findById(user._id);
+  console.log(userinfo);
+
+  return res.status(201).json({ newCommentId: comment._id, newUsername: userinfo.username });
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    params: { id },
+    session: {
+      user: { _id },
+    },
+    body: { comId },
+  } = req;
+
+  const comment = await commentModel.findById(comId);
+  console.log(comment.owner);
+  console.log(_id);
+
+  if (!comment) {
+    return res.status(404).render("404", { pageTitle: "댓글이 없습니다." });
+  }
+
+  if (!comment.owner.equals(_id)) {
+    return res.redirect(`/videos/${id}`);
+  }
+  await commentModel.findByIdAndDelete(comId);
+  await videoModel.findByIdAndUpdate(
+    id,
+    {
+      $pull: { comments: comId },
+    },
+    { returnDocument: "after" }
+  );
+  await userModel.findByIdAndUpdate(
+    _id,
+    {
+      $pull: { comments: comId },
+    },
+    { returnDocument: "after" }
+  );
+  return res.status(200).json({ message: "삭제성공" });
 };

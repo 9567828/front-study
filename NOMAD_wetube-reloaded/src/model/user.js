@@ -5,6 +5,18 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   avatarUrl: String,
   socialOnly: { type: Boolean, default: false },
+  githubLogin: { type: Boolean, default: false },
+  googleLogin: { type: Boolean, default: false },
+  kakaoLogin: { type: Boolean, default: false },
+  kakaoId: {
+    type: String,
+    default: function () {
+      return `null_${Date.now()}`;
+    },
+    require: function () {
+      return !this.kakaoLogin;
+    },
+  },
   username: { type: String, required: true, unique: true },
   password: {
     type: String,

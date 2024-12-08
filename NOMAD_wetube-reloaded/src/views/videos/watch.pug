@@ -20,7 +20,7 @@ block content
     small=video.createdAt
     br
     small 게시자&nbsp;
-      a(href=`/users/${video.owner._id}`) #{video.owner.name}
+      a(href=`/users/${video.owner._id}`) #{video.owner.username}
     ul
       p hashtags
       each hashtag in video.hashtags
@@ -35,7 +35,16 @@ block content
       form.video-comment-form#comment-form
         textarea(cols="30", rows="10", placeholder="댓글을 입력해주세요")
         button 댓글추가
-
+  div.comment-list
+    each comment in video.comments.reverse()
+      div.comment-wrap(data-comId=comment.id)
+        div.left
+          span.comment.text 댓: #{comment.text}
+          each user in users
+            if comment.owner.equals(user._id)
+              span.comment.name 작성자: #{user.username}
+        if comment.owner.equals(loggedInUser._id) 
+          span.delete-comment ❌
 block scripts
   script(src="/static/js/videoPlayer.js")
   if loggedIn

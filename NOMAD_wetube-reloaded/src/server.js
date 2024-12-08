@@ -3,10 +3,10 @@ import morgan from "morgan";
 import session from "express-session";
 import flash from "express-flash";
 import MongoStore from "connect-mongo";
+import { localsMiddleware } from "./middlewares";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import rootRouter from "./routers/rootRouter";
-import { localsMiddleware } from "./middlewares";
 import apiRouter from "./routers/apiRouter";
 
 const app = express();
@@ -16,13 +16,14 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 
-// 상태코드가 자꾸 3004가 떠서 캐시 없애버린 것
+// 상태코드가 자꾸 304가 떠서 캐시 없애버린 것
 // app.use((req, res, next) => {
 //   res.setHeader("Cache-Control", "no-store");
 //   next();
 // });
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
   session({

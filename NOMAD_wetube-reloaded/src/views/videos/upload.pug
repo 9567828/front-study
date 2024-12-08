@@ -8,8 +8,8 @@ block content
   form(method="POST" enctype="multipart/form-data")
     label(for="video") 비됴파일
     input(type="file", name="video" id="video" accept="video/*" required)
-    input(type="text" name="title" placeholder="Video Title" required maxlenth=80)
-    input(type="text" name="description" placeholder="description" required minlength=20)
+    input(type="text" name="title" placeholder="Video Title" required maxlenth=20)
+    input(type="text" name="description" placeholder="description" required maxlength=80)
     input(type="text" name="hashtags" placeholder="hashtags separate by comma" required)
     input(type="submit" value="Upload Video")
 

@@ -18,11 +18,18 @@
     }
   }
 }
-#video-meta-container{
+
+.hashtags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#video-meta-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 80px;
   margin: 20px auto 0;
   max-width: 800px;
   width: 100%;
@@ -78,7 +85,7 @@
     margin-bottom: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     .left {
       display: flex;
       flex-direction: column-reverse;

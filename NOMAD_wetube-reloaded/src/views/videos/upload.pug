@@ -2,9 +2,11 @@ extends ../base
 
 block content
   div
+    video#preview
     button#start-btn 녹음시작
-  if errorMessage
-    span=errorMessage
+  div.error
+    if errorMessage
+      span.error-message=errorMessage
   form(method="POST" enctype="multipart/form-data")
     label(for="video") 비됴파일
     input(type="file", name="video" id="video" accept="video/*" required)

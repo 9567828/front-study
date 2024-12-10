@@ -21,8 +21,8 @@ block content
     br
     small 게시자&nbsp;
       a(href=`/users/${video.owner._id}`) #{video.owner.username}
-    ul
-      p hashtags
+    p hashtags
+    ul.hashtags
       each hashtag in video.hashtags
         li=hashtag
   if video.owner._id.equals(loggedInUser._id)

@@ -75,7 +75,7 @@ export const postEdit = async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    return res.status(404).render("videos/edit", { pageTitle: `Editing: ${video.title}`, errorMessge: "비디오 수정에 실패 했습니다." });
+    return res.status(404).render("videos/edit", { pageTitle: `Editing: ${video.title}`, errorMessage: "동영상 수정 실패" });
   }
   return res.redirect(`/videos/${id}`);
 };
@@ -105,10 +105,17 @@ export const postUpload = async (req, res) => {
     user.videos.push(newVideo._id);
     user.save();
   } catch (error) {
-    console.log(error);
     return res.status(400).render("videos/upload", { pageTitle: "upload video", errorMessage: error._message });
   }
   return res.redirect("/");
+};
+
+export const putRecorderError = async (req, res) => {
+  // const {
+  //   body: { errorMessage },
+  // } = req;
+
+  return res.sendStatus(301);
 };
 
 export const deleteVideo = async (req, res) => {

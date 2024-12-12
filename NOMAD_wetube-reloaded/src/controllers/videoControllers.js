@@ -110,13 +110,13 @@ export const postUpload = async (req, res) => {
   return res.redirect("/");
 };
 
-export const putRecorderError = async (req, res) => {
-  // const {
-  //   body: { errorMessage },
-  // } = req;
+// export const putRecorderError = async (req, res) => {
+//   // const {
+//   //   body: { errorMessage },
+//   // } = req;
 
-  return res.sendStatus(301);
-};
+//   return res.sendStatus(301);
+// };
 
 export const deleteVideo = async (req, res) => {
   const {

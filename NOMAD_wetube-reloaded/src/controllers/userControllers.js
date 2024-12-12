@@ -268,7 +268,6 @@ export const finishGoogleLogin = async (req, res) => {
       })
     ).json();
 
-    console.log(userData);
     // 이메일 정보가 바른지 true 이냐
     const email = userData.verified_email;
     if (!email) {

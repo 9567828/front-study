@@ -1,5 +1,5 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { fetchFile, toBlobURL } from "@ffmpeg/util";
+import { fetchFile } from "@ffmpeg/util";
 
 const BODY = document.body;
 const startBtn = document.getElementById("start-btn");
@@ -11,18 +11,30 @@ let videoFile;
 
 const handleDownload = async () => {
   // log: true -> 콘솔에 로그를 출력한다
-  const ffmpeg = new FFmpeg({ log: true });
-
+  const ffmpeg = new FFmpeg();
   await ffmpeg.load();
+
+  ffmpeg.on("log", ({ message }) => {
+    console.log(message);
+  });
+
   ffmpeg.writeFile("recording.webm", await fetchFile(videoFile));
 
   await ffmpeg.exec(["-i", "recording.webm", "-r", "60", "output.mp4"]);
 
-  const outputData = await ffmpeg.readFile("output.mp4");
+  // -ss 스크린샷, 01초로 이동, 첫번째 프레임을 1번 찍는다
+  await ffmpeg.exec(["-i", "recording.webm", "-ss", "00:00:01", "-frames:v", "1", "thumbnail.jpg"]);
 
-  const downloadURL = URL.createObjectURL(new Blob([outputData.buffer], { type: "video/mp4" }));
+  const mp4File = await ffmpeg.readFile("output.mp4");
+  const thumbFile = await ffmpeg.readFile("thumbnail.jpg");
 
-  console.log(downloadURL);
+  const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
+  const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
+
+  const mp4URL = URL.createObjectURL(mp4Blob);
+  const thumbURL = URL.createObjectURL(thumbBlob);
+
+  // 이전 버전 코드
   // // 저장할 폴더명, 저장할 파일명, 가져올 URL
   // ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
 
@@ -30,10 +42,16 @@ const handleDownload = async () => {
   // await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
 
   const a = document.createElement("a");
-  a.href = downloadURL;
+  a.href = mp4URL;
   a.download = "내 녹화파일";
   BODY.appendChild(a);
   a.click();
+
+  const thumbA = document.createElement("a");
+  thumbA.href = thumbURL;
+  thumbA.download = "썸네일.jpg";
+  BODY.appendChild(thumbA);
+  thumbA.click();
 };
 
 const handleStop = () => {
@@ -87,6 +105,8 @@ const init = async () => {
     });
     video.srcObject = stream;
     video.play();
+
+    startBtn.addEventListener("click", handleStart);
   } catch (error) {
     if (error.name === "NotAllowedError" && error.message === "Permission denied") {
       let errorMessage = "카메라, 마이크를 허용하지 않으면 \n이용에 제한이 있습니다";
@@ -102,5 +122,3 @@ const init = async () => {
 };
 
 init();
-
-startBtn.addEventListener("click", handleStart);

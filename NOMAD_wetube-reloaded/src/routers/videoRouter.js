@@ -10,7 +10,10 @@ videoRouter
   .all(protectorMiddleware)
   .get(getEdit)
   .post(
-    videoUpload.single("video"),
+    videoUpload.fields([
+      { name: "video", maxCount: 1 },
+      { name: "thumb", maxCount: 1 },
+    ]),
     (err, req, res, next) => {
       const {
         params: { id },
@@ -25,7 +28,10 @@ videoRouter
   .all(protectorMiddleware)
   .get(arrowMic, getUpload)
   .post(
-    videoUpload.single("video"),
+    videoUpload.fields([
+      { name: "video", maxCount: 1 },
+      { name: "thumb", maxCount: 1 },
+    ]),
     (err, req, res, next) => {
       handleFileSizeError(err, req, res, next, "/videos/upload");
     },

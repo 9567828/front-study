@@ -10,8 +10,11 @@ block content
       video(src=`/${video.fileUrl}` width="330")
     else
       p 비디오가 없다
+    label(for="video") 영상 
     input(type="file", name="video" accept="video/*")
-    input(type="text" name="title" placeholder="Video Title", value=video.title required maxlenth=80)
-    input(type="text" name="description" placeholder="description" value=video.description required minlength=20)
+    label(for="thumb") 썸네일
+    input(type="file", name="thumb" accept="images/*")
+    input(type="text" name="title" placeholder="Video Title", value=video.title required maxlenth=20)
+    input(type="text" name="description" placeholder="description" value=video.description required maxlength=80)
     input(type="text" name="hashtags" placeholder="hashtags separate by comma" value=video.hashtags.join() required)
     input(type="submit" value="save")

@@ -2,6 +2,14 @@ import videoModel from "../model/video";
 import userModel from "../model/user";
 import commentModel from "../model/comment";
 import likeModel from "../model/likes";
+const fs = require("fs");
+const path = require("path");
+
+const deleteFile = (filepath) => {
+  if (fs.existsSync(filepath)) {
+    fs.unlinkSync(filepath);
+  }
+};
 
 export const home = async (req, res) => {
   const videos = await videoModel.find({}).sort({ createdAt: "desc" }).populate("owner").populate("likes");
@@ -48,34 +56,46 @@ export const postEdit = async (req, res) => {
     session: {
       user: { _id },
     },
-    file,
+    files: { video, thumb },
     body: { title, description, hashtags },
   } = req;
 
-  const video = await videoModel.findById(id);
-  if (!video) {
+  const isVideo = await videoModel.findById(id);
+  if (!isVideo) {
     return res.render("404", { pageTitle: "video not found" });
   }
 
-  if (!video.owner.equals(_id)) {
+  if (!isVideo.owner.equals(_id)) {
     req.flash("error", "비디오 주인이 아니다");
     return res.status(403).redirect("/");
   }
+
+  const oldFileUrl = isVideo.fileUrl;
+  const oldThumbUrl = isVideo.thumbUrl;
 
   try {
     await videoModel.findByIdAndUpdate(
       id,
       {
-        fileUrl: file ? file.path : video.fileUrl,
+        fileUrl: video ? videoModel.replacePath(video[0].path) : isVideo.fileUrl,
+        thumbUrl: thumb ? videoModel.replacePath(thumb[0].path) : isVideo.thumbUrl,
         title,
         description,
         hashtags: videoModel.formatHashtags(hashtags),
       },
       { new: true }
     );
+
+    if (video) {
+      deleteFile(oldFileUrl);
+    }
+
+    if (thumb) {
+      deleteFile(oldThumbUrl);
+    }
   } catch (error) {
     console.log(error);
-    return res.status(404).render("videos/edit", { pageTitle: `Editing: ${video.title}`, errorMessage: "동영상 수정 실패" });
+    return res.status(404).render("videos/edit", { pageTitle: `Editing: ${isVideo.title}`, errorMessage: "동영상 수정 실패" });
   }
   return res.redirect(`/videos/${id}`);
 };
@@ -89,7 +109,7 @@ export const postUpload = async (req, res) => {
     session: {
       user: { _id },
     },
-    file: { path: fileUrl },
+    files: { video, thumb },
     body: { title, description, hashtags },
   } = req;
 
@@ -98,7 +118,8 @@ export const postUpload = async (req, res) => {
       title,
       description,
       owner: _id,
-      fileUrl,
+      fileUrl: videoModel.replacePath(video[0].path),
+      thumbUrl: videoModel.replacePath(thumb[0].path),
       hashtags: videoModel.formatHashtags(hashtags),
     });
     const user = await userModel.findById(_id);
@@ -135,6 +156,11 @@ export const deleteVideo = async (req, res) => {
     return res.status(403).redirect("/");
   }
 
+  const fileUrlPath = video.fileUrl;
+  const thumbUrlPath = video.thumbUrl;
+
+  console.log(fileUrlPath, thumbUrlPath);
+
   await videoModel.findByIdAndDelete(id);
   await userModel.findByIdAndUpdate(
     _id,
@@ -143,6 +169,9 @@ export const deleteVideo = async (req, res) => {
     },
     { returnDocument: "after" }
   );
+
+  deleteFile(fileUrlPath);
+  deleteFile(thumbUrlPath);
 
   return res.redirect("/");
 };

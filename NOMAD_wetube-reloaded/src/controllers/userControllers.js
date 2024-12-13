@@ -1,6 +1,7 @@
 import userModel from "../model/user";
 import videoModel from "../model/video";
 import bcrypt from "bcrypt";
+const fs = require("fs");
 
 const setUserSession = (req, user) => {
   req.session.user = user;
@@ -365,11 +366,13 @@ export const postEdit = async (req, res) => {
     return res.status(400).render("users/edit-profile", { pageTitle, errorName, errorMail });
   }
 
+  const oldAvatarUrl = user.avatarUrl;
+
   try {
     const updateUser = await userModel.findByIdAndUpdate(
       _id,
       {
-        avatarUrl: file ? file.path : avatarUrl,
+        avatarUrl: file ? file.path.replace(/[\\]/g, "/") : avatarUrl,
         name,
         email,
         username,
@@ -378,6 +381,12 @@ export const postEdit = async (req, res) => {
       { returnDocument: "after" }
     );
     req.session.user = updateUser;
+
+    if (file.path) {
+      if (fs.existsSync(oldAvatarUrl)) {
+        fs.unlinkSync(oldAvatarUrl);
+      }
+    }
   } catch (error) {
     return res.render("users/edit-profile", { pageTitle, errorMessage: error._message });
   }

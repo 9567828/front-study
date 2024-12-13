@@ -2,14 +2,33 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 
 const BODY = document.body;
-const startBtn = document.getElementById("start-btn");
+const actionBtn = document.getElementById("action-btn");
 const video = document.getElementById("preview");
 
 let stream;
 let recorder;
 let videoFile;
 
+const files = {
+  input: "recording.webm",
+  output: "output.mp4",
+  thumb: "thumbnail.jpg",
+};
+
+const downloadFile = (fileURL, filename) => {
+  const a = document.createElement("a");
+  a.href = fileURL;
+  a.download = filename;
+  BODY.appendChild(a);
+  a.click();
+};
+
 const handleDownload = async () => {
+  actionBtn.removeEventListener("click", handleDownload);
+
+  actionBtn.innerText = "변환중..";
+  actionBtn.disabled = true;
+
   // log: true -> 콘솔에 로그를 출력한다
   const ffmpeg = new FFmpeg();
   await ffmpeg.load();
@@ -18,15 +37,15 @@ const handleDownload = async () => {
     console.log(message);
   });
 
-  ffmpeg.writeFile("recording.webm", await fetchFile(videoFile));
+  ffmpeg.writeFile(files.input, await fetchFile(videoFile));
 
-  await ffmpeg.exec(["-i", "recording.webm", "-r", "60", "output.mp4"]);
+  await ffmpeg.exec(["-i", files.input, "-r", "60", files.output]);
 
   // -ss 스크린샷, 01초로 이동, 첫번째 프레임을 1번 찍는다
-  await ffmpeg.exec(["-i", "recording.webm", "-ss", "00:00:01", "-frames:v", "1", "thumbnail.jpg"]);
+  await ffmpeg.exec(["-i", files.input, "-ss", "00:00:01", "-frames:v", "1", files.thumb]);
 
-  const mp4File = await ffmpeg.readFile("output.mp4");
-  const thumbFile = await ffmpeg.readFile("thumbnail.jpg");
+  const mp4File = await ffmpeg.readFile(files.output);
+  const thumbFile = await ffmpeg.readFile(files.thumb);
 
   const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
   const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
@@ -36,35 +55,39 @@ const handleDownload = async () => {
 
   // 이전 버전 코드
   // // 저장할 폴더명, 저장할 파일명, 가져올 URL
-  // ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
+  // ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
 
   // // -i > input, 인코딩할 파일명, 초당 60프레임"60"으로 인코딩"-r", output 될 파일명
-  // await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
+  // await ffmpeg.run("-i", files.input, "-r", "60", files.output);
 
-  const a = document.createElement("a");
-  a.href = mp4URL;
-  a.download = "내 녹화파일";
-  BODY.appendChild(a);
-  a.click();
+  downloadFile(mp4URL, "내녹화파일.mp4");
+  downloadFile(thumbURL, "썸네일.jpg");
 
-  const thumbA = document.createElement("a");
-  thumbA.href = thumbURL;
-  thumbA.download = "썸네일.jpg";
-  BODY.appendChild(thumbA);
-  thumbA.click();
+  const deletFiles = await ffmpeg.deleteFile(files.output, files.thumb);
+
+  console.log(deletFiles);
+
+  URL.revokeObjectURL(mp4URL);
+  URL.revokeObjectURL(thumbURL);
+  URL.revokeObjectURL(videoFile);
+
+  actionBtn.disabled = false;
+  actionBtn.innerText = "다시녹화";
+  init();
+  actionBtn.removeEventListener("click", handleStart);
 };
 
 const handleStop = () => {
-  startBtn.innerText = "다운로드비디오";
-  startBtn.removeEventListener("click", handleStop);
-  startBtn.addEventListener("click", handleDownload);
+  actionBtn.innerText = "다운로드비디오";
+  actionBtn.removeEventListener("click", handleStop);
+  actionBtn.addEventListener("click", handleDownload);
   recorder.stop();
 };
 
 const handleStart = () => {
-  startBtn.innerText = "녹화중지";
-  startBtn.removeEventListener("click", handleStart);
-  startBtn.addEventListener("click", handleStop);
+  actionBtn.innerText = "녹화중지";
+  actionBtn.removeEventListener("click", handleStart);
+  actionBtn.addEventListener("click", handleStop);
 
   recorder = new MediaRecorder(stream);
   recorder.ondataavailable = (e) => {
@@ -106,7 +129,7 @@ const init = async () => {
     video.srcObject = stream;
     video.play();
 
-    startBtn.addEventListener("click", handleStart);
+    actionBtn.addEventListener("click", handleStart);
   } catch (error) {
     if (error.name === "NotAllowedError" && error.message === "Permission denied") {
       let errorMessage = "카메라, 마이크를 허용하지 않으면 \n이용에 제한이 있습니다";

@@ -3,17 +3,19 @@ extends ../base
 block content
   div
     video#preview
-    button#start-btn 녹화시작
+    button#action-btn 녹화시작
   div.error
     if errorMessage
       span.error-message=errorMessage
   form(method="POST" enctype="multipart/form-data")
     label(for="video") 비됴파일
     input(type="file", name="video" id="video" accept="video/*" required)
+    label(for="thumb") 썸네일
+    input(type="file", name="thumb" id="thumb" accept="image/*" required)
     input(type="text" name="title" placeholder="Video Title" required maxlenth=20)
     input(type="text" name="description" placeholder="description" required maxlength=80)
     input(type="text" name="hashtags" placeholder="hashtags separate by comma" required)
     input(type="submit" value="Upload Video")
 
 block scripts
-  script(src="/static/js/recorder.js") 
+  script(src="/static/js/recorder.js")

@@ -120,6 +120,8 @@ const handleError = (text) => {
   BODY.appendChild(div);
 };
 
+let errorMessage = "";
+
 const init = async () => {
   try {
     stream = await window.navigator.mediaDevices.getUserMedia({
@@ -132,13 +134,17 @@ const init = async () => {
     actionBtn.addEventListener("click", handleStart);
   } catch (error) {
     if (error.name === "NotAllowedError" && error.message === "Permission denied") {
-      let errorMessage = "카메라, 마이크를 허용하지 않으면 \n이용에 제한이 있습니다";
+      errorMessage = "카메라, 마이크를 허용하지 않으면 \n이용에 제한이 있습니다";
       // const response = await fetch(`/api/videos/recorder/error`, {
       //   method: "PUT",
       //   headers: { "Content-type": "application/json" },
       //   // body: JSON.stringify({ errorMessage }),
       // });
       // if (response.status === 301) {
+      handleError(errorMessage);
+    }
+    if (error.name === "NotFoundError") {
+      errorMessage = "카메라, 마이크를 찾을 수 없습니다 \n 녹화를 사용할 수 없습니다.";
       handleError(errorMessage);
     }
   }

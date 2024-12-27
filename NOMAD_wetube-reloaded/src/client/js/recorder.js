@@ -37,7 +37,7 @@ const handleDownload = async () => {
     console.log(message);
   });
 
-  ffmpeg.writeFile(files.input, await fetchFile(videoFile));
+  await ffmpeg.writeFile(files.input, await fetchFile(videoFile));
 
   await ffmpeg.exec(["-i", files.input, "-r", "60", files.output]);
 
